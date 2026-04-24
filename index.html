@@ -254,6 +254,30 @@ body {
 
 }
 
+
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1e1f22;
+  padding: 10px 15px;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 14px;
+}
+
+.music-player:hover {
+  background: #2b2d31;
+}
+
+#music-icon {
+  font-size: 18px;
+}
+
 </style>
 </head>
 
@@ -311,5 +335,43 @@ body {
 
 </div>
 
+
+<audio id="music" loop>
+  <source src="audio/GS_MS.ogg" type="audio/mpeg">
+</audio>
+
+<!-- Control tipo Discord -->
+<div class="music-player" onclick="toggleMusic()">
+  <span id="music-icon">⏸️</span>
+  <span id="music-text">Playing</span>
+</div>
+
+<script>
+const music = document.getElementById("music");
+const icon = document.getElementById("music-icon");
+const text = document.getElementById("music-text");
+
+// Intentar autoplay
+window.addEventListener("load", () => {
+  music.volume = 0.5;
+  music.play().catch(() => {
+    text.textContent = "Click to play";
+    icon.textContent = "▶️";
+  });
+});
+
+function toggleMusic() {
+  if (music.paused) {
+    music.play();
+    icon.textContent = "⏸️";
+    text.textContent = "Playing";
+  } else {
+    music.pause();
+    icon.textContent = "▶️";
+    text.textContent = "Paused";
+  }
+}
+</script>
+  
 </body>
 </html>
