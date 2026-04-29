@@ -278,6 +278,26 @@ body {
   font-weight: bold;
 }
 
+#music-panel {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none; /* 👈 clave */
+  transition: 0.3s;
+}
+
+#music-panel.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
 </style>
 </head>
 
@@ -290,15 +310,17 @@ body {
 
 <div class="sidebar">
 
-  <!-- ARRIBA -->
+  <!-- HOME arriba -->
   <div>
     <img src="images/Home.jpg">
   </div>
 
-  <!-- ABAJO -->
+  <!-- MÚSICA abajo -->
   <div onclick="openPlayer()" style="font-size:28px; cursor:pointer;">
     🎵
   </div>
+
+</div>
 
 </div>
 
