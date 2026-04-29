@@ -184,12 +184,15 @@ body {
   .profile { flex-direction:column; text-align:center; }
 }
 
+
+
+<video class="bg-video" autoplay muted loop>
+  <source src="DEtrackbd.mp4" type="video/mp4">
+</video>
 /* 🎧 Player mejorado */
 .player-ui {
   position: relative;
   overflow: hidden;
-  width: 320px;
-  border-radius: 15px;
 }
 
 /* VIDEO DE FONDO */
@@ -198,10 +201,9 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-  z-index: 0;
 
+  z-index: 0;
   opacity: 0.35;
   filter: blur(2px) brightness(0.7);
 }
@@ -209,9 +211,8 @@ body {
 /* contenido encima del video */
 .player-ui > *:not(.bg-video) {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
-
 
 .bg-video {
   transform: scale(1.1);
@@ -310,22 +311,16 @@ body {
 #music-panel {
   position: fixed;
   inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(10px);
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background: rgba(0,0,0,0.7);
-  backdrop-filter: blur(10px);
-
   opacity: 0;
-  pointer-events: none;
+  pointer-events: none; /* 👈 clave */
   transition: 0.3s;
-}
-
-#music-panel.active {
-  opacity: 1;
-  pointer-events: all;
 }
 
 #music-panel.active {
@@ -360,29 +355,6 @@ body {
 #volume {
   width: 80px;
 }
-
-#music-panel.fullscreen .player-ui {
-  width: 100%;
-  height: 100%;
-  border-radius: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-
-#music-panel.fullscreen .bg-video {
-  opacity: 0.5;
-  filter: blur(0px);
-}
-
-#music-panel.fullscreen .info {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  text-align: left;
-}
-
 
 </style>
 </head>
@@ -452,41 +424,14 @@ Mis pasatiempos:
   </div>
 </div>
 
-<!-- 🎵 PANEL -->
+<!-- 🎵 PANEL DE MÚSICA -->
 <div id="music-panel">
-
   <div class="player-ui">
-
-    <video class="bg-video" autoplay muted loop></video>
 
     <img src="images/cover.jpg" class="cover">
 
-    <div class="info">
-      <h3 id="song-title">Desconexión Emocional</h3>
-      <p id="artist">Missa Sinfonia</p>
-    </div>
-
-    <div class="controls">
-      <button id="fs-btn" onclick="toggleFullPlayer()">⛶</button>
-      <button id="play-btn" onclick="toggleMusic()">▶️</button>
-      <div class="volume-control">🔊 <input type="range" id="volume" min="0" max="1" step="0.01"></div>
-    </div>
-
-    <div class="progress-container" onclick="seek(event)">
-      <div class="progress" id="progress"></div>
-    </div>
-
-    <div class="time">
-      <span id="current">0:00</span>
-      <span id="duration">0:00</span>
-    </div>
-
-    <div id="lyrics-box" class="lyrics"></div>
-
-  </div>
-</div>
-  
-</div>
+    <h3 id="song-title">Desconexión Emocional</h3>
+    <p id="artist">Missa Sinfonia</p>
 
     <!-- Barra -->
     <div class="progress-container" onclick="seek(event)">
@@ -498,20 +443,13 @@ Mis pasatiempos:
       <span id="duration">0:00</span>
     </div>
 
-<div class="controls">
-
-  <button id="fs-btn" onclick="toggleFullPlayer()">⛶</button>
-
+    <div class="controls">
   <button id="play-btn" onclick="toggleMusic()">▶️</button>
 
   <div class="volume-control">
     🔊
     <input type="range" id="volume" min="0" max="1" step="0.01">
   </div>
-
-</div>
-    
-    </div>
     </div>
 
 <div id="lyrics-box" class="lyrics"></div>
@@ -728,12 +666,7 @@ function toggleMusic(){
   }
           }
 
-const panel = document.getElementById("music-panel");
-
-function toggleFullPlayer(){
-  panel.classList.toggle("fullscreen");
-}
-
+  
 </script>
 </body>
 </html>
