@@ -20,15 +20,17 @@ body {
   color: #fff;
 }
 
-/* Sidebar */
 .sidebar {
   width: 80px;
   background: #1e1f22;
   height: 100vh;
+
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 20px;
+  flex-direction: column;
+  justify-content: space-between; /* 👈 clave */
+  align-items: center;
+
+  padding: 20px 0;
 }
 
 .sidebar img {
@@ -43,13 +45,14 @@ body {
   padding: 20px;
 }
 
-/* Contenedor tipo tarjeta */
+/* Contenedor */
 .container {
   background: #2b2d31;
   border-radius: 10px;
   overflow: hidden;
 }
 
+/* Banner */
 .banner {
   position: relative;
   height: 180px;
@@ -62,28 +65,18 @@ body {
   object-fit: cover;
 }
 
-/* Efecto encima */
 .banner-effect {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   object-fit: cover;
-  pointer-events: none;
   opacity: 0.5;
   mix-blend-mode: screen;
-
   animation: bannerMove 6s infinite alternate;
 }
 
 @keyframes bannerMove {
-  0% {
-    transform: scale(1) translateX(0);
-  }
-  100% {
-    transform: scale(1.1) translateX(10px);
-  }
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
 }
 
 /* Perfil */
@@ -94,31 +87,29 @@ body {
   padding: 15px;
 }
 
+/* Avatar */
 .avatar {
   position: relative;
   width: 80px;
   height: 80px;
+  animation: pulse 3s infinite ease-in-out;
 }
 
-/* Imagen de perfil */
 .avatar-img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  display: block;
 }
 
-/* Decoración (marco/efecto) */
 .avatar-decoration {
   position: absolute;
   top: -5px;
   left: -5px;
   width: 90px;
   height: 90px;
-  pointer-events: none;
+  animation: glow 2.5s infinite alternate;
 }
 
-/* Estado tipo Discord */
 .status {
   position: absolute;
   bottom: 2px;
@@ -130,28 +121,9 @@ body {
   border-radius: 50%;
 }
 
-.avatar {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  animation: pulse 3s infinite ease-in-out;
-}
-
-.avatar-decoration {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: 90px;
-  height: 90px;
-  pointer-events: none;
-  animation: glow 2.5s infinite alternate;
-}
-
-/* Animaciones */
 @keyframes pulse {
-  0% { transform: scale(1); }
+  0%,100% { transform: scale(1); }
   50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
 }
 
 @keyframes glow {
@@ -159,27 +131,22 @@ body {
   100% { filter: drop-shadow(0 0 10px #5865f2); }
 }
 
-/* Glow opcional */
-.avatar:hover .avatar-decoration {
-  filter: drop-shadow(0 0 6px #5865f2);
-}
-
 .profile h1 {
   font-size: 22px;
 }
 
 /* Sobre mí */
-.section {
-  margin-top: 20px;
+.about {
+  padding: 15px;
 }
 
-.section h2 {
+.about h2 {
   color: #5865f2;
   margin-bottom: 10px;
 }
 
 .card {
-  background: #2b2d31;
+  background: #1e1f22;
   padding: 15px;
   border-radius: 10px;
 }
@@ -188,94 +155,127 @@ body {
   white-space: pre-line;
 }
 
-/* 📱 RESPONSIVE */
-@media (max-width: 768px) {
-
-  body {
-    flex-direction: column;
-  }
-
-  /* Sidebar pasa arriba tipo barra */
-  .sidebar {
-    width: 100%;
-    height: 60px;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-  }
-
-  .sidebar img {
-    width: 40px;
-  }
-
-  /* Main ocupa todo */
-  .main {
-    padding: 10px;
-  }
-
-  /* Banner más pequeño */
-  .banner {
-    height: 120px;
-  }
-
-  /* Perfil en columna */
-  .profile {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  /* Avatar más chico */
-  .avatar {
-    width: 70px;
-    height: 70px;
-  }
-
-  .avatar-decoration {
-    width: 80px;
-    height: 80px;
-  }
-
-  .status {
-    width: 14px;
-    height: 14px;
-  }
-
-  /* Nombre */
-  .profile h1 {
-    font-size: 18px;
-  }
-
-  /* Card */
-  .card {
-    font-size: 14px;
-  }
-
-}
-
-
-.music-player {
+/* Overlay */
+#overlay {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  inset: 0;
   background: #1e1f22;
-  padding: 10px 15px;
-  border-radius: 10px;
   display: flex;
-  gap: 10px;
+  justify-content: center;
   align-items: center;
+  z-index: 999;
   cursor: pointer;
+  transition: 0.5s;
+}
+
+#overlay h1 {
+  opacity: 0.8;
+}
+
+#overlay:hover h1 {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px){
+  body { flex-direction: column; }
+  .sidebar { width:100%; height:60px; flex-direction:row; }
+  .banner { height:120px; }
+  .profile { flex-direction:column; text-align:center; }
+}
+
+/* 🎧 Player mejorado */
+.player-ui {
+  position: relative;
+  background: #1e1f22;
+  padding: 20px;
+  border-radius: 15px;
+  width: 320px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* 🌈 Blur dinámico */
+.player-ui::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: url("images/cover.jpg") center/cover;
+  filter: blur(30px) brightness(0.5);
+  z-index: 0;
+}
+
+.player-ui > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 🎵 Barra tipo Spotify */
+.progress-container {
+  width: 100%;
+  height: 6px;
+  background: #2a2a2a;
+  border-radius: 10px;
+  margin: 12px 0;
+  cursor: pointer;
+  position: relative;
+}
+
+/* progreso */
+.progress {
+  height: 100%;
+  width: 0%;
+  background: #1db954; /* verde Spotify */
+  border-radius: 10px;
+  transition: width 0.1s linear;
+}
+
+/* círculo draggable */
+.progress::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: -4px;
+  width: 14px;
+  height: 14px;
+  background: #1db954;
+  border-radius: 50%;
+  opacity: 0;
   transition: 0.2s;
+}
+
+.progress-container:hover .progress::after {
+  opacity: 1;
+}
+
+/* tiempo */
+.time {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #ddd;
+}
+
+.lyrics {
+  margin-top: 15px;
+  height: 120px;
+  overflow: hidden;
+  position: relative;
   font-size: 14px;
+  color: #aaa;
 }
 
-.music-player:hover {
-  background: #2b2d31;
+.lyrics-line {
+  text-align: center;
+  opacity: 0.4;
+  transition: 0.3s;
 }
 
-#music-icon {
-  font-size: 18px;
+.lyrics-line.active {
+  font-size: 16px;
+  color: #fff;
+  opacity: 1;
+  font-weight: bold;
 }
 
 </style>
@@ -283,107 +283,274 @@ body {
 
 <body>
 
+<!-- Pantalla de entrada -->
+<div id="overlay">
+  <h1>Click para entrar</h1>
+</div>
+
 <div class="sidebar">
-  <img src="images/Home.jpg">
+
+  <!-- ARRIBA -->
+  <div>
+    <img src="images/Home.jpg">
+  </div>
+
+  <!-- ABAJO -->
+  <div onclick="openPlayer()" style="font-size:28px; cursor:pointer;">
+    🎵
+  </div>
+
 </div>
 
 <div class="main">
 
   <div class="container">
-    
+
     <!-- Banner -->
     <div class="banner">
-  <img src="images/banner_picture.png" class="banner-base">
-
-  <!-- Decoración tipo Lone Wolf -->
-  <img src="images/lonewolf.gif" class="banner-effect">
-</div>
+      <img src="images/banner_picture.png" class="banner-base">
+      <img src="images/lonewolf.gif" class="banner-effect">
+    </div>
 
     <!-- Perfil -->
-  <div class="profile">
-  <div class="avatar">
-    <img src="images/profilepicture.jpg" class="avatar-img">
-    <img src="images/hologram_dragon.webp" class="avatar-decoration">
-    <span class="status"></span>
-  </div>
+    <div class="profile">
+      <div class="avatar">
+        <img src="images/profilepicture.jpg" class="avatar-img">
+        <img src="images/hologram_dragon.webp" class="avatar-decoration">
+        <span class="status"></span>
+      </div>
+      <h1>Karu 💙</h1>
+    </div>
 
-  <h1>Karu 💙</h1>
-</div>
-</div>
+    <!-- Sobre mí -->
+    <div class="about">
+      <h2>Sobre mí</h2>
+      <div class="card">
+<p>Hola!!! Que tal? Espero que muy bien :3
+
+Bueno me presento...
+Me llamo Axel pero dime como mi username :)
+
+Tengo 17 años...
+
+Mis pasatiempos:
+- Videojuegos
+- Dibujar
+- Música
+- Discord</p>
+      </div>
     </div>
 
   </div>
+</div>
 
-  <!-- Sobre mí -->
-  <div class="section">
-    <h2>Sobre mí</h2>
-    <div class="card">
-      <p>Hola!!! Que tal? Espero que muy bien :3
+<!-- 🎵 PANEL DE MÚSICA -->
+<div id="music-panel">
+  <div class="player-ui">
 
-        Bueno me presento...                                                                              
-        Me llamo Axel pero si quieres dime como mi username pls!!!                                           
-        Tengo 17 años... pipipi, solo 4 meses mas...                                       
-        Mis pasatiempos favs. son:                                                       
-                                           
-        Jugar Videojuegos (Ovi)                    
-        Dibujar (Aunque no soy un artista pro)             
-        Escuchar musica (De casi todo...)                    
-        Y pasar un rato en Discord.              
-      </p>
+    <img src="images/cover.jpg" class="cover">
+
+    <h3 id="song-title">Desconexión Emocional</h3>
+    <p id="artist">Missa Sinfonia</p>
+
+    <!-- Barra -->
+    <div class="progress-container" onclick="seek(event)">
+      <div class="progress" id="progress"></div>
     </div>
-  </div>
+
+    <div class="time">
+      <span id="current">0:00</span>
+      <span id="duration">0:00</span>
+    </div>
+
+    <div class="controls">
+  <button onclick="toggleMusic()">⏯</button>
+</div>
+
+<div id="lyrics-box" class="lyrics"></div>
 
 </div>
 
-
+<!-- Audio -->
 <audio id="music" loop>
-  <source src="audio/Grape Soda FNS - MS.mp3" type="audio/mpeg">
+  <source src="audio/Desconexion Emocional/Desconexión Emocional.mp3">
 </audio>
 
-<!-- Control tipo Discord -->
-<div class="music-player" onclick="toggleMusic()">
-  <span id="music-icon">⏸️</span>
-  <span id="music-text">Playing</span>
-</div>
+<script>
 
+</script>
 <script>
 const music = document.getElementById("music");
-const icon = document.getElementById("music-icon");
-const text = document.getElementById("music-text");
+const overlay = document.getElementById("overlay");
+const panel = document.getElementById("music-panel");
 
-// 🎵 INFO PERSONALIZADA
-const songName = "Playing Inst Grape Soda";
-const artist = "by: Missa Sinfonia";
+const progress = document.getElementById("progress");
+const progressContainer = document.querySelector(".progress-container");
+const current = document.getElementById("current");
+const duration = document.getElementById("duration");
 
-function updateText() {
-  text.textContent = songName + " " + artist;
+let isDragging = false;
+
+// 🎬 START
+overlay.onclick = () => {
+  overlay.style.opacity = "0";
+  setTimeout(()=> overlay.style.display="none",500);
+
+  music.volume = 0.5;
+  music.play();
+};
+
+// 🎵 abrir panel
+function openPlayer(){
+  panel.classList.add("active");
 }
 
-// Intentar autoplay
-window.addEventListener("load", () => {
-  music.volume = 0.5;
+// cerrar
+panel.onclick = (e)=>{
+  if(e.target.id === "music-panel"){
+    panel.classList.remove("active");
+  }
+};
 
-  music.play().then(() => {
-    icon.textContent = "⏸️";
-    updateText();
-  }).catch(() => {
-    text.textContent = "Click to play";
-    icon.textContent = "▶️";
-  });
+// play/pause
+function toggleMusic(){
+  music.paused ? music.play() : music.pause();
+}
+
+// ⏱ CUANDO YA CARGA LA CANCIÓN
+music.addEventListener("loadedmetadata", () => {
+  duration.textContent = formatTime(music.duration);
 });
 
-function toggleMusic() {
-  if (music.paused) {
-    music.play();
-    icon.textContent = "⏸️";
-    updateText();
-  } else {
-    music.pause();
-    icon.textContent = "▶️";
-    text.textContent = "Paused";
+// 🔄 ACTUALIZAR PROGRESO
+music.addEventListener("timeupdate", () => {
+  if (!music.duration || isDragging) return;
+
+  const percent = (music.currentTime / music.duration) * 100;
+  progress.style.width = percent + "%";
+
+  current.textContent = formatTime(music.currentTime);
+});
+
+// 🖱 DRAG REAL
+progressContainer.addEventListener("mousedown", () => {
+  isDragging = true;
+});
+
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+
+  const rect = progressContainer.getBoundingClientRect();
+  let x = e.clientX - rect.left;
+
+  x = Math.max(0, Math.min(x, rect.width));
+
+  const percent = x / rect.width;
+  progress.style.width = (percent * 100) + "%";
+
+  music.currentTime = percent * music.duration;
+});
+
+// 📱 soporte táctil
+progressContainer.addEventListener("touchstart", () => isDragging = true);
+
+document.addEventListener("touchend", () => isDragging = false);
+
+document.addEventListener("touchmove", (e) => {
+  if (!isDragging) return;
+
+  const rect = progressContainer.getBoundingClientRect();
+  let x = e.touches[0].clientX - rect.left;
+
+  x = Math.max(0, Math.min(x, rect.width));
+
+  const percent = x / rect.width;
+  progress.style.width = (percent * 100) + "%";
+
+  music.currentTime = percent * music.duration;
+});
+
+// 🧠 formato tiempo
+function formatTime(t){
+  if (isNaN(t)) return "0:00";
+
+  const m = Math.floor(t/60);
+  const s = Math.floor(t%60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+let lyrics = [];
+
+// cargar .lrc
+async function loadLyrics(){
+  const res = await fetch("audio/Desconexion Emocional/Desconexión Emocional.lrc");
+  const text = await res.text();
+
+  const lines = text.split("\n");
+
+  lyrics = lines.map(line=>{
+    const match = line.match(/\[(\d+):(\d+)(?:\.(\d+))?\]/);
+    if(!match) return null;
+
+    return {
+      time: parseInt(match[1])*60 + parseInt(match[2]) + (match[3]? parseInt(match[3])/100:0),
+      text: line
+  .replace(/\[.*?\]/g, "")   // quita [00:00]
+  .replace(/<.*?>/g, "")     // quita <00:00.00>
+  .trim()
+
+    };
+  }).filter(l => l && l.text && !l.text.includes("www"));
+
+  renderLyrics();
+}
+
+// pintar líneas
+function renderLyrics(){
+  const box = document.getElementById("lyrics-box");
+  box.innerHTML = "";
+
+  lyrics.forEach((l,i)=>{
+    const div = document.createElement("div");
+    div.classList.add("lyrics-line");
+    div.textContent = l.text;
+    div.id = "line-" + i;
+    box.appendChild(div);
+  });
+}
+
+// sincronizar
+function updateLyrics(){
+  const t = music.currentTime;
+
+  for(let i=0;i<lyrics.length;i++){
+    if(t >= lyrics[i].time){
+      // quitar active
+      document.querySelectorAll(".lyrics-line").forEach(el=>el.classList.remove("active"));
+
+      const active = document.getElementById("line-"+i);
+      if(active){
+        active.classList.add("active");
+
+        // auto scroll centrado
+        active.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }
+    }
   }
 }
+
+// conectar con el tiempo
+music.addEventListener("timeupdate", updateLyrics);
+
+loadLyrics();
+
 </script>
-  
 </body>
 </html>
