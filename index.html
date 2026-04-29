@@ -452,18 +452,26 @@ Mis pasatiempos:
   </div>
 </div>
 
-<!-- 🎵 PANEL DE MÚSICA -->
-<div id="music-panel">
+
   <div class="player-ui">
-    
-    <video class="bg-video" autoplay muted loop>
-  <source src="DEtrackbd.mp4" type="video/mp4">
-    </video>
 
-    <img src="images/cover.jpg" class="cover">
+  <video class="bg-video" autoplay muted loop></video>
 
+  <img src="images/cover.jpg" class="cover">
+
+  <div class="info">
     <h3 id="song-title">Desconexión Emocional</h3>
     <p id="artist">Missa Sinfonia</p>
+  </div>
+
+  <!-- controles -->
+  <div class="controls">
+    <button id="fs-btn" onclick="toggleFullPlayer()">⛶</button>
+    <button id="play-btn" onclick="toggleMusic()">▶️</button>
+    <div class="volume-control">🔊 <input type="range"></div>
+  </div>
+
+</div>
 
     <!-- Barra -->
     <div class="progress-container" onclick="seek(event)">
