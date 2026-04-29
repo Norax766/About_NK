@@ -383,10 +383,6 @@ body {
     🎵
   </div>
 
-</div>
-
-</div>
-
 <div class="main">
 
   <div class="container">
@@ -675,6 +671,17 @@ function toggleMusic(){
   }
           }
 
+function seek(e){
+  const rect = progressContainer.getBoundingClientRect();
+  let x = e.clientX - rect.left;
+
+  x = Math.max(0, Math.min(x, rect.width));
+
+  const percent = x / rect.width;
+
+  music.currentTime = percent * music.duration;
+  progress.style.width = (percent * 100) + "%";
+                                                        }
   
 </script>
 </body>
