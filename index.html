@@ -440,6 +440,27 @@ body {
   transition: 0.3s ease;
 }
 
+  /* capa del video */
+.bg-video{
+  z-index: 1;
+}
+
+/* capa blur */
+.player-ui::before{
+  z-index: 0;
+}
+
+/* contenido normal */
+.player-ui > *:not(.bg-video){
+  z-index: 2;
+}
+
+/* BOTÓN SIEMPRE ENCIMA */
+#fs-btn{
+  position: relative;
+  z-index: 9999;
+  }
+  
 /* modo fullscreen */
 .player-ui.fullscreen #fs-btn{
   position: fixed;
