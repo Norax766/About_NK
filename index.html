@@ -16,8 +16,56 @@
 
 body {
   display: flex;
-  background: #313338;
   color: #fff;
+  overflow-x: hidden;
+
+  background: radial-gradient(circle at 20% 30%, #5865f2 0%, transparent 40%),
+              radial-gradient(circle at 80% 70%, #1db954 0%, transparent 40%),
+              #0f1115;
+
+  background-size: 200% 200%;
+  animation: bgMove 15s infinite alternate ease-in-out;
+}
+
+@keyframes bgMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 40px 40px;
+
+  opacity: 0.05;
+  z-index: -1;
+
+  animation: particlesMove 60s linear infinite;
+}
+
+@keyframes particlesMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
+}
+
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  backdrop-filter: blur(60px);
+  background: rgba(0,0,0,0.4);
+
+  z-index: -1;
 }
 
 .sidebar {
@@ -146,9 +194,33 @@ body {
 }
 
 .card {
-  background: #1e1f22;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.4),
+    inset 0 1px 1px rgba(255,255,255,0.2);
+
   padding: 15px;
-  border-radius: 10px;
+
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  background: rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.5),
+    inset 0 1px 2px rgba(255,255,255,0.25);
+}
+
+.about h2 {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(88,101,242,0.6);
 }
 
 .card p {
