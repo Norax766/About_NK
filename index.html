@@ -543,16 +543,64 @@ body::before {
   text-shadow: 0 0 8px #ff3b3b;
 }
 
+#profile-effect {
+  position: fixed;
+  top: 0;
+  left: 80px; /* 👈 respeta sidebar */
+
+  width: calc(100% - 80px);
+  height: 100%;
+
+  pointer-events: none; /* 👈 no bloquea clicks */
+
+  z-index: 9998;
+  overflow: hidden;
+}
+
+/* GIF */
+#profile-effect img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  opacity: 0.35; /* 👈 ajusta intensidad */
+
+  mix-blend-mode: screen; /* 👈 efecto tipo Discord */
+}
+
+@media (max-width: 768px){
+  #profile-effect {
+    left: 0;
+    width: 100%;
+  }
+}
+
+#profile-effect img {
+  animation: effectMove 20s infinite alternate ease-in-out;
+}
+
+@keyframes effectMove {
+  from { transform: scale(1.05); }
+  to { transform: scale(1.15); }
+}
+  
 </style>
 </head>
 
 <body>
-
 <!-- Pantalla de entrada -->
 <div id="overlay">
   <h1>Click para entrar</h1>
 </div>
 
+  <!-- Efecto de Perfil -->
+<div id="profile-effect">
+  <img src="images/profile_effect.gif" alt="">
+</div>
+
+  
 <div class="sidebar">
 
   <!-- HOME arriba -->
