@@ -170,9 +170,16 @@ body::before {
 .banner-effect {
   position: absolute;
   inset: 0;
-  object-fit: cover;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain; /* 👈 clave */
+  object-position: center;
+
   opacity: 0.5;
   mix-blend-mode: screen;
+
   animation: bannerMove 6s infinite alternate;
 }
 
@@ -558,7 +565,7 @@ body::before {
     <!-- Banner -->
     <div class="banner">
       <img src="images/profile_banner.jpg" class="banner-base">
-      <img src="videos/Lone_wolf_banner_effect2.gif" class="banner-effect">
+      <img src="videos/Lone_wolf_banner_effect.gif" class="banner-effect">
     </div>
 
     <!-- Perfil -->
