@@ -134,12 +134,19 @@ body::before {
   padding: 20px;
 }
 
-/* Contenedor */
+/* 📦 Contenedor centrado y con límite en PC */
 .container {
-  background: #2b2d31;
-  border-radius: 10px;
-  overflow: hidden;
+  width: 100%;
+  max-width: 900px;   /* 👈 ajusta si quieres más chico/grande */
+  margin: 0 auto;     /* 👈 centra */
 }
+
+@media (min-width: 1200px){
+  .container {
+    max-width: 800px;
+  }
+}
+
 
 /* Banner */
 .banner {
@@ -698,6 +705,17 @@ body::before {
   z-index: 2;
 }
  
+ /* 🔥 Ocultar scrollbar pero mantener scroll */
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge viejo */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+
 </style>
 </head>
 
