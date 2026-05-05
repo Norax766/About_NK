@@ -799,8 +799,8 @@ Hola que Tal?
   </div>
     </div>
 
-  <div id="lyrics-box" class="lyrics"></div>
-
+   <div id="lyrics-box" class="lyrics"></div>
+</div>
 </div>
 
 
@@ -822,9 +822,17 @@ Hola que Tal?
         </p>
       </div>
 
+
+      
       <!-- SUB -->
       <div id="sub-perf-options" class="subtab">
-        <h2>Personalizar el rendimiento</h2>
+        <p class="option" onclick="openSubTab('perf-options')">
+         Personalizar rendimiento →
+        </p>
+
+        <p class="option" onclick="openTab('performance')">
+        ← Volver
+        </p>
 
         <button onclick="setPerformance('high')" class="perf-btn high">
           High (Calidad completa)
@@ -1098,53 +1106,73 @@ function updateFPS(){
 
 updateFPS();
 
-
 // ==========================
-// ⚙️ CONFIG PANEL
+// ⚙️ CONFIG PANEL (FIX REAL)
 // ==========================
 
-const settingsPanel = document.getElementById("settings-panel");
+let settingsPanel;
 
-// abrir config
-function openSettings(){
+// esperar a que cargue TODO
+window.addEventListener("DOMContentLoaded", () => {
+
+  settingsPanel = document.getElementById("settings-panel");
+
   if(!settingsPanel) return;
-  settingsPanel.classList.add("active");
-}
 
-// cerrar haciendo click fuera
-if(settingsPanel){
+  // cerrar haciendo click fuera
   settingsPanel.addEventListener("click", (e)=>{
     if(e.target.id === "settings-panel"){
       settingsPanel.classList.remove("active");
     }
   });
+
+});
+
+// abrir config
+function openSettings(){
+  if(!settingsPanel){
+    settingsPanel = document.getElementById("settings-panel");
+  }
+
+  if(settingsPanel){
+    settingsPanel.classList.add("active");
+  }
+
+  console.log("Config cargada")
+
 }
 
-
-// ==========================
-// 📑 NAVEGACIÓN
-// ==========================
-
-// tabs principales
-function openTab(tab){
-  document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-  document.getElementById("tab-" + tab).classList.add("active");
-
-  document.querySelectorAll(".subtab").forEach(s=>s.classList.remove("active"));
-}
-
-// sub menú
 function openSubTab(id){
+
+  // ocultar todo
   document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
   document.querySelectorAll(".subtab").forEach(s=>s.classList.remove("active"));
 
-  document.getElementById("sub-" + id).classList.add("active");
+  // mostrar el que quieres
+  const target = document.getElementById("sub-" + id);
+  if(target){
+    target.classList.add("active");
+  }
 }
 
+function setPerformance(mode){
 
-// ==========================
-// 🚀 RENDIMIENTO
-// ==========================
+  // guardar
+  localStorage.setItem("perf", mode);
+
+  // quitar selección previa
+  document.querySelectorAll(".perf-btn").forEach(btn=>{
+    btn.style.opacity = "0.6";
+  });
+
+  // marcar activo
+  const activeBtn = document.querySelector("." + mode);
+  if(activeBtn){
+    activeBtn.style.opacity = "1";
+  }
+
+  // tu código de rendimiento aquí...
+}
 
 function setPerformance(mode){
 
@@ -1155,48 +1183,37 @@ function setPerformance(mode){
 
   if(mode === "low"){
 
-    // ❌ quitar efectos pesados
-    if(profileEffect) profileEffect.style.display = "none";
-    if(bannerEffect) bannerEffect.style.display = "none";
-    if(avatarDeco) avatarDeco.style.display = "none";
+    // ❌ efectos pesados
+    profileEffect.style.display = "none";
+    bannerEffect.style.display = "none";
+    avatarDeco.style.display = "none";
 
     // 🐢 fondo más lento
-    document.body.style.animation = "bgMove 40s infinite alternate ease-in-out";
+    document.body.style.animationDuration = "50s";
 
     // 🔻 blur más ligero
     document.body.style.backdropFilter = "blur(10px)";
 
-    // 🎥 video optimizado
-    if(video){
-      video.style.filter = "blur(1px) brightness(0.5)";
-      video.playbackRate = 0.8;
-    }
+    // 🎥 video calidad baja + pausa si oculto
+    video.style.filter = "blur(1px) brightness(0.5)";
+    video.playbackRate = 0.7;
 
   } else {
 
     // ✅ restaurar
-    if(profileEffect) profileEffect.style.display = "block";
-    if(bannerEffect) bannerEffect.style.display = "block";
-    if(avatarDeco) avatarDeco.style.display = "block";
+    profileEffect.style.display = "block";
+    bannerEffect.style.display = "block";
+    avatarDeco.style.display = "block";
 
-    document.body.style.animation = "bgMove 15s infinite alternate ease-in-out";
-    document.body.style.backdropFilter = "blur(20px)";
+    document.body.style.animationDuration = "15s";
+    document.body.style.backdropFilter = "blur(60px)";
 
-    if(video){
-      video.style.filter = "blur(2px) brightness(0.7)";
-      video.playbackRate = 1;
-    }
+    video.style.filter = "blur(2px) brightness(0.7)";
+    video.playbackRate = 1;
+
   }
 
-  // 💾 guardar config
   localStorage.setItem("perf", mode);
-}
-
-
-// cargar config guardada
-const savedPerf = localStorage.getItem("perf");
-if(savedPerf){
-  setPerformance(savedPerf);
 }
 
 </script>
