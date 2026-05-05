@@ -1005,22 +1005,31 @@ function renderLyrics(){
 }
 
 // sincronizar
+let lastIndex = -1;
+
 function updateLyrics(){
+
+  if(!panel.classList.contains("active")) return;
+
   const t = music.currentTime;
 
   for(let i=0;i<lyrics.length;i++){
-    if(t >= lyrics[i].time){
-      // quitar active
-      document.querySelectorAll(".lyrics-line").forEach(el=>el.classList.remove("active"));
+    if(t >= lyrics[i].time && i !== lastIndex){
+
+      lastIndex = i;
+
+      document.querySelectorAll(".lyrics-line")
+        .forEach(el=>el.classList.remove("active"));
 
       const active = document.getElementById("line-"+i);
+
       if(active){
         active.classList.add("active");
 
-        // auto scroll centrado
-        active.scrollIntoView({
-        block: "center"
-        });
+        const box = document.getElementById("lyrics-box");
+
+        box.scrollTop =
+          active.offsetTop - box.clientHeight / 2;
       }
     }
   }
