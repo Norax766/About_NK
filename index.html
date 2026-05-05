@@ -419,7 +419,8 @@ body::before {
 .lyrics {
   margin-top: 15px;
   height: 120px;
-  overflow: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
   position: relative;
   font-size: 14px;
   color: #aaa;
@@ -883,20 +884,23 @@ overlay.onclick = () => {
 // 🎵 abrir panel
 function openPlayer(){
   panel.classList.add("active");
+  document.body.style.overflow = "hidden";
 
   const video = document.querySelector(".bg-video");
-  video.play();
+  if(video) video.play();
 }
 
-// cerrar
+// Cerrar panel haciendo click fuera (del video o controles)
 panel.onclick = (e)=>{
   if(e.target.id === "music-panel"){
     panel.classList.remove("active");
+    document.body.style.overflow = "auto";
 
     const video = document.querySelector(".bg-video");
-    video.pause();
+    if(video) video.pause();
   }
 };
+
 
 // ⏱ CUANDO YA CARGA LA CANCIÓN
 music.addEventListener("loadedmetadata", () => {
