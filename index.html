@@ -56,6 +56,9 @@ body::after {
   to { transform: translateY(-200px); }
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
 
 body::before {
   content: "";
@@ -328,6 +331,7 @@ body::before {
   overflow: hidden;
   width: 320px;
   border-radius: 15px;
+  touch-action: none;
 }
 
 /* VIDEO DE FONDO */
@@ -427,6 +431,7 @@ body::before {
   margin-top: 15px;
   height: 120px;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* 🔥 clave en móvil */
   scroll-behavior: smooth;
   position: relative;
   font-size: 14px;
@@ -460,6 +465,7 @@ body::before {
   opacity: 0;
   pointer-events: none;
   transition: 0.3s;
+  touch-action: none;
 }
 
 #music-panel.active {
@@ -902,17 +908,17 @@ overlay.onclick = () => {
 // 🎵 abrir panel
 function openPlayer(){
   panel.classList.add("active");
-  document.body.style.overflow = "hidden";
+  document.body.classList.add("no-scroll");
 
   const video = document.querySelector(".bg-video");
   if(video) video.play();
 }
 
-// Cerrar panel haciendo click fuera (del video o controles)
+//Cerrar panel haciendo click fuera
 panel.onclick = (e)=>{
   if(e.target.id === "music-panel"){
     panel.classList.remove("active");
-    document.body.style.overflow = "auto";
+    document.body.classList.remove("no-scroll");
 
     const video = document.querySelector(".bg-video");
     if(video) video.pause();
