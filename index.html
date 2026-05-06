@@ -823,7 +823,6 @@ Hola que Tal?
     <input type="range" id="volume" min="0" max="1" step="0.01">
   </div>
     </div>
-
    <div id="lyrics-box" class="lyrics"></div>
 </div>
 </div>
@@ -882,9 +881,18 @@ Hola que Tal?
 </audio>
 
 <script>
+const supportedLangs = ["es","en","pt","fr","it","de"];
 
-</script>
-<script>
+let userLang = (
+  navigator.languages && navigator.languages.length
+    ? navigator.languages[0]
+    : navigator.language
+).slice(0,2);
+
+if(!supportedLangs.includes(userLang)){
+  userLang = "en"; // fallback
+}
+
 const music = document.getElementById("music");
 const overlay = document.getElementById("overlay");
 const panel = document.getElementById("music-panel");
@@ -992,6 +1000,8 @@ function formatTime(t){
   return m + ":" + (s < 10 ? "0" : "") + s;
 }
 
+let translatedLyrics = [];
+let isTranslated = false;
 let lyrics = [];
 
 // cargar .lrc
@@ -1023,7 +1033,9 @@ function renderLyrics(){
   const box = document.getElementById("lyrics-box");
   box.innerHTML = "";
 
-  lyrics.forEach((l,i)=>{
+  const source = isTranslated ? translatedLyrics : lyrics;
+
+  source.forEach((l,i)=>{
     const div = document.createElement("div");
     div.classList.add("lyrics-line");
     div.textContent = l.text;
@@ -1066,7 +1078,17 @@ function updateLyrics(){
 // conectar con el tiempo
 music.addEventListener("timeupdate", updateLyrics);
 
-loadLyrics();
+loadLyrics().then(async () => {
+
+  await translateLyricsFast();
+
+  // activar automáticamente si no es español
+  if(userLang !== "es"){
+    isTranslated = true;
+  }
+
+  renderLyrics();
+});
 
 const playBtn = document.getElementById("play-btn");
 const volumeSlider = document.getElementById("volume");
@@ -1252,6 +1274,84 @@ function setPerformance(mode){
 
   localStorage.setItem("perf", mode);
 }
+
+async function translateLyricsFast(){
+
+  if(userLang === "es"){
+    translatedLyrics = [...lyrics];
+    return;
+  }
+
+  try{
+
+    // 🔹 unir todo
+    const fullText = lyrics.map(l => l.text).join(" ||| ");
+
+    // 🔹 dividir en bloques de máximo 400 chars (seguro)
+    const chunks = [];
+    let current = "";
+
+    fullText.split(" ").forEach(word => {
+      if((current + word).length > 400){
+        chunks.push(current);
+        current = word + " ";
+      } else {
+        current += word + " ";
+      }
+    });
+
+    if(current) chunks.push(current);
+
+    // 🔹 traducir cada bloque
+    let translatedText = "";
+
+    for(const chunk of chunks){
+      const res = await fetch(
+        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(chunk)}&langpair=es|${userLang}`
+      );
+
+      const data = await res.json();
+      translatedText += data.responseData.translatedText + " ";
+    }
+
+    // 🔹 reconstruir líneas
+    const translated = translatedText.split(" ||| ");
+
+    translatedLyrics = lyrics.map((l,i)=>({
+      time: l.time,
+      text: translated[i] || l.text
+    }));
+
+  }catch{
+    translatedLyrics = [...lyrics];
+  }
+}
+
+async function toggleTranslate(){
+
+  const btn = document.getElementById("translate-btn");
+
+  if(!isTranslated){
+
+    btn.textContent = "Traduciendo...";
+
+    if(translatedLyrics.length === 0){
+      await translateLyrics();
+    }
+
+    isTranslated = true;
+    btn.textContent = "🌐 Original (ES)";
+
+  } else {
+
+    isTranslated = false;
+    btn.textContent = "🌐 Traducir (EN)";
+  }
+
+  renderLyrics();
+}
+
+
 
 </script>
 </body>
