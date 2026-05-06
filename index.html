@@ -277,8 +277,26 @@ body::before {
   padding: 15px;
 
   transition: 0.3s ease;
+
+  /* 👇 IMPORTANTE */
+  max-height: 200px;   /* ajusta altura */
+  overflow-y: auto;    /* scroll interno */
 }
 
+.card::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  scrollbar-width: none;
+}
+
+@media (max-width: 768px){
+  .card {
+    max-height: 150px;
+  }
+}
+  
 .card:hover {
   background: rgba(255, 255, 255, 0.12);
 
