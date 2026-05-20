@@ -907,7 +907,7 @@ Programar (Aunque todavia estoy aprendiendo y pueda cometer errores).
 
 <!-- Audio -->
 <audio id="music" loop>
-  <source src="audio/Inside (Deluxe)/Mother Mother - Hayloft II (SPOTISAVER).mp3">
+  <source src="audio/Inside (Deluxe)/Mother Mother - Hayloft II.mp3">
 </audio>
 
 <script>
@@ -1036,7 +1036,7 @@ let lyrics = [];
 
 // cargar .lrc
 async function loadLyrics(){
-  const res = await fetch("audio/Desconexion Emocional/Desconexión Emocional.lrc");
+  const res = await fetch("audio/Inside (Deluxe)/Mother Mother - Hayloft II.lrc");
   const text = await res.text();
 
   const lines = text.split("\n");
@@ -1113,7 +1113,7 @@ loadLyrics().then(async () => {
   await translateLyricsFast();
 
   // activar automáticamente si no es español
-  if(userLang !== "es"){
+  if(userLang !== "en"){
     isTranslated = true;
   }
 
@@ -1307,7 +1307,7 @@ function setPerformance(mode){
 
 async function translateLyricsFast(){
 
-  if(userLang === "es"){
+  if(userLang === "en"){
     translatedLyrics = [...lyrics];
     return;
   }
@@ -1337,7 +1337,7 @@ async function translateLyricsFast(){
 
     for(const chunk of chunks){
       const res = await fetch(
-        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(chunk)}&langpair=es|${userLang}`
+        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(chunk)}&langpair=en|${userLang}`
       );
 
       const data = await res.json();
