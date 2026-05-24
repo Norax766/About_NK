@@ -316,7 +316,7 @@ async function translateLyricsFast(){
 
     for(const chunk of chunks){
       const res = await fetch(
-        `https://api.mymemory.translated.net/get?q=${encodeURIComponent(chunk)}&langpair=en|${userLang}`
+        `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=`
       );
 
       const data = await res.json();
