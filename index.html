@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Informacion :3</title>
+<link rel="icon" href="images/icon.jpg" type="image/png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/player.css">
+<link rel="stylesheet" href="css/settings.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+<!-- Pantalla de entrada -->
+<div id="overlay">
+  <h1>Click para entrar</h1>
+</div>
+
+  <!-- Efecto de Perfil -->
+<div id="profile-effect">
+  <img src="videos/Profile_effect1.gif" alt="">
+</div>
+
+  
+<div class="sidebar">
+
+  <!-- HOME arriba -->
+  <div>
+    <img src="images/Home.jpg">
+  </div>
+
+ <!-- FPS -->
+    <div id="fps-counter">FPS: 0</div>
+
+  <!-- MÚSICA abajo -->
+  <div onclick="openPlayer()" style="font-size:28px; cursor:pointer;">
+    🎵
+  </div>
+ 
+  <div onclick="openSettings()" style="font-size:24px; cursor:pointer;">
+  ⚙️
+  </div>
+
+</div>
+
+<div class="main">
+
+  <div class="container">
+
+    <!-- Banner -->
+    <div class="banner">
+      <img src="videos/Banner2.gif" class="banner-base">
+      <img src="videos/Lone_wolf_banner_effect.gif" class="banner-effect">
+    </div>
+
+    <!-- Perfil -->
+    <div class="profile">
+      <div class="avatar">
+        <img src="images/ProfilePictureMiku.jpg" class="avatar-img">
+        <img src="videos/profilepictureMiku.gif" class="avatar-decoration">
+        <span class="status"></span>
+      </div>
+      <h1>.𝒦𝒶𝓇𝓊  💙</h1>
+    </div>
+
+    <!-- Sobre mí -->
+    <div class="about">
+      <h2>Sobre mí</h2>
+      <div class="card">
+<p>
+Hola que tal? Espero que bien...
+
+Bueno me presento... 
+Me llamo Axel, pero prefiero que me digan como mi nombre de usuario :)
+tengo 17 años ya yendo para los 18.
+  
+Mis pasatiempos favoritos son...
+
+Jugar Videojuegos
+Ver Peliculas/Series acompañado
+Grabar/Editar vudeos
+Dibujar (aunque no ciento que esten chidos... me falta practicaf un poco más)
+Escuchar Musica (Casi de todo)
+Programar (Aunque todavia estoy aprendiendo y pueda cometer errores).
+</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 🎵 PANEL DE MÚSICA -->
+<div id="music-panel">
+  <div class="player-ui">
+    
+    <video class="bg-video" autoplay muted loop>
+  <source src="videos/SAWTONE ft. Miku/MVM@GICALCURE! LOVE  SHOT!  SAWTOWNE feat. Hatsune Miku.mp4" type="video/mp4">
+    </video>
+
+    <img src="images/SAWTONE ft. Miku/MCoverTrack.jpg" class="cover">
+
+    <h3 id="song-title">M@GICAL CURE LOVE SHOT</h3>
+    <p id="artist">SAWTONE ft. 初音ミク</p>
+
+    <!-- Barra -->
+    <div class="progress-container" onclick="seek(event)">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <div class="time">
+      <span id="current">0:00</span>
+      <span id="duration">0:00</span>
+    </div>
+
+    <div class="controls">
+  <button id="play-btn" onclick="toggleMusic()">▶️</button>
+
+  <div class="volume-control">
+    🔊
+    <input type="range" id="volume" min="0" max="1" step="0.01">
+  </div>
+    </div>
+   <div id="lyrics-box" class="lyrics"></div>
+</div>
+</div>
+
+
+<div id="settings-panel">
+  <div class="settings-box">
+
+    <div class="settings-sidebar">
+      <h3>Configuración</h3>
+      <button onclick="openTab('performance')">Rendimiento</button>
+    </div>
+
+    <div class="settings-content">
+
+      <!-- MAIN -->
+      <div id="tab-performance" class="tab active">
+        <h2>Rendimiento</h2>
+        <p onclick="openSubTab('perf-options')" class="option">
+          Personalizar rendimiento →
+        </p>
+      </div>
+
+
+      
+      <!-- SUB -->
+      <div id="sub-perf-options" class="subtab">
+        <p class="option" onclick="openSubTab('perf-options')">
+         Personalizar rendimiento →
+        </p>
+
+        <p class="option" onclick="openTab('performance')">
+        ← Volver
+        </p>
+
+        <button onclick="setPerformance('high')" class="perf-btn high">
+          High (Calidad completa)
+        </button>
+
+        <button onclick="setPerformance('low')" class="perf-btn low">
+          Low (Optimizado)
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- Audio -->
+<audio id="music" loop>
+  <source src="audio/SAWTONE ft. Miku/M@GICAL CURE! LOVE SHOT! (feat. Hatsune Miku).mp3">
+</audio>
+
+<script src="js/main.js"></script>
+<script src="js/player.js"></script>
+<script src="js/lyrics.js"></script>
+<script src="js/translate.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/performance.js"></script>
+<script src="js/fps.js"></script>
+
+</body>
+</html>
