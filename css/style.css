@@ -618,7 +618,9 @@ body::-webkit-scrollbar {
 
   width: 650px;
   max-width: 92%;
-
+  
+  overflow: hidden;
+  
   padding: 28px;
 
   border-radius: 26px;
@@ -678,6 +680,10 @@ body::-webkit-scrollbar {
 .discord-preview{
 
   width: 100%;
+  max-width: 100%;
+  height: auto;
+  
+  display: block;
 
   border-radius: 18px;
 
