@@ -531,8 +531,12 @@ body::-webkit-scrollbar {
   box-shadow: 0 0 15px #ffffff;
 }
 
+.roblox:hover{
+  box-shadow: 0 0 15px rgb(25, 0, 255);
+}
+
 .instagram:hover{
-  box-shadow: 0 0 15px #2949ff;
+  box-shadow: 0 0 15px #ff00d4;
 }
 
 .profile-info{
