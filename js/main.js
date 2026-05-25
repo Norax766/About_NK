@@ -451,34 +451,12 @@ window.addEventListener("load", () => {
 const discordModal =
   document.getElementById("discord-modal");
 
-const discordLoading =
-  document.querySelector(".discord-loading");
-
-const discordContent =
-  document.querySelector(".discord-content");
-
-
-// 🔥 abrir modal
 function openDiscordModal(){
 
   discordModal.classList.add("active");
 
-  discordLoading.style.display = "flex";
-  discordContent.style.display = "none";
-
-  // fake loading aesthetic
-  setTimeout(()=>{
-
-    discordLoading.style.display = "none";
-
-    discordContent.style.display = "block";
-
-  }, 1800);
-
 }
 
-
-// 🔥 cerrar click fuera
 discordModal.addEventListener("click",(e)=>{
 
   if(e.target.id === "discord-modal"){
