@@ -582,6 +582,10 @@ body::-webkit-scrollbar {
 
 }
 
+
+
+
+
 #discord-modal{
   position: fixed;
   inset: 0;
@@ -601,7 +605,6 @@ body::-webkit-scrollbar {
 
   transition: 0.35s;
 }
-
 
 #discord-modal.active{
   opacity: 1;
