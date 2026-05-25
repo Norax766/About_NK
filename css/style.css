@@ -1,0 +1,571 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  color: #fff;
+  overflow-x: hidden;
+
+  background: radial-gradient(circle at 20% 30%, #5865f2 0%, transparent 40%),
+              radial-gradient(circle at 80% 70%, #1db954 0%, transparent 40%),
+              #0f1115;
+
+  background-size: 200% 200%;
+  animation: bgMove 15s infinite alternate ease-in-out;
+}
+
+@keyframes bgMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 40px 40px;
+
+  opacity: 0.05;
+  z-index: -1;
+
+  animation: particlesMove 60s linear infinite;
+}
+
+@keyframes particlesMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(-200px); }
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  backdrop-filter: blur(20px);
+  background: rgba(0,0,0,0.4);
+
+  z-index: -1;
+}
+
+.sidebar {
+  width: 80px;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 0;
+
+  /* 🌫️ ULTRA GLASS */
+  background: rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(35px) saturate(200%) brightness(1.2);
+  -webkit-backdrop-filter: blur(35px) saturate(200%) brightness(1.2);
+
+  border-right: 1px solid rgba(255,255,255,0.25);
+
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.3),
+    inset 0 -2px 4px rgba(255,255,255,0.1),
+    0 0 40px rgba(88,101,242,0.3),
+    0 0 80px rgba(88,101,242,0.2);
+
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar::after {
+  content: "";
+  position: absolute;
+  inset: -20px;
+
+  background: radial-gradient(circle at 50% 50%, #5865f2, transparent 70%);
+  opacity: 0.2;
+  filter: blur(40px);
+
+  z-index: -1;
+}
+
+.sidebar img {
+  width: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.sidebar img:hover {
+  transform: scale(1.15);
+
+  box-shadow:
+    0 0 15px rgba(88,101,242,0.8),
+    0 0 30px rgba(88,101,242,0.4);
+}
+
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* 📦 Contenedor centrado y con límite en PC */
+.container {
+  width: 100%;
+  max-width: 900px;   /* 👈 ajusta si quieres más chico/grande */
+  margin: 0 auto;     /* 👈 centra */
+}
+
+@media (min-width: 1200px){
+  .container {
+    max-width: 800px;
+  }
+}
+
+
+/* Banner */
+.banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 6; /* 👈 se adapta a cualquier pantalla */
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.banner-base {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover; /* 👈 fondo SI llena */
+}
+
+.banner-effect {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover; /* 👈 cambia a cover */
+  object-position: center;
+
+  opacity: 0.5;
+  mix-blend-mode: screen;
+
+  pointer-events: none;
+}
+
+.banner-effect {
+  transform: scale(1.1); /* 👈 zoom suave */
+}
+  
+
+@keyframes bannerMove {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
+}
+
+/* Perfil */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+}
+
+/* Avatar */
+.avatar {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  animation: pulse 3s infinite ease-in-out;
+  overflow: visible;
+}
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.avatar-decoration {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 90px;
+  height: 90px;
+  animation: glow 2.5s infinite alternate;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  background: #23a55a;
+  border: 3px solid #2b2d31;
+  border-radius: 50%;
+}
+
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes glow {
+  0% { filter: drop-shadow(0 0 2px #5865f2); }
+  100% { filter: drop-shadow(0 0 10px #5865f2); }
+}
+
+.profile h1 {
+  font-size: 22px;
+}
+
+/* Sobre mí */
+.about {
+  padding: 15px;
+}
+
+.about h2 {
+  color: #5865f2;
+  margin-bottom: 10px;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.4),
+    inset 0 1px 1px rgba(255,255,255,0.2);
+
+  padding: 15px;
+
+  transition: 0.3s ease;
+
+  /* 👇 IMPORTANTE */
+  max-height: 200px;   /* ajusta altura */
+  overflow-y: auto;    /* scroll interno */
+}
+
+.card::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  scrollbar-width: none;
+}
+
+@media (max-width: 768px){
+  .card {
+    max-height: 150px;
+  }
+}
+  
+.card:hover {
+  background: rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.5),
+    inset 0 1px 2px rgba(255,255,255,0.25);
+}
+
+.about h2 {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(88,101,242,0.6);
+}
+
+.card p {
+  white-space: pre-line;
+}
+
+/* Overlay */
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: #1e1f22;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#overlay h1 {
+  opacity: 0.8;
+}
+
+#overlay:hover h1 {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px){
+  body { flex-direction: column; }
+  .sidebar { width:100%; height:60px; flex-direction:row; }
+  .banner { height:120px; }
+  .profile { flex-direction:column; text-align:center; }
+}
+
+
+#fps-counter {
+  margin-top: 10px;
+  padding: 6px 10px;
+
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border: 1px solid rgba(255,255,255,0.2);
+
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.3),
+    0 0 10px rgba(0,0,0,0.4);
+
+  transition: 0.2s;
+}
+
+.fps-green {
+  color: #00ff88;
+  text-shadow: 0 0 8px #00ff88;
+}
+
+.fps-orange {
+  color: #ffaa00;
+  text-shadow: 0 0 8px #ffaa00;
+}
+
+.fps-red {
+  color: #ff3b3b;
+  text-shadow: 0 0 8px #ff3b3b;
+}
+
+#profile-effect {
+  position: fixed;
+  top: 0;
+  left: 80px;
+  width: calc(100% - 80px);
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: 0; /* 👈 antes alto, ahora bajo */
+  overflow: hidden;
+}
+
+/* GIF */
+#profile-effect img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  opacity: 0.15; /* 👈 más bajo */
+  mix-blend-mode: lighten; /* 👈 más suave que screen */
+}
+
+@media (max-width: 768px){
+  #profile-effect {
+    left: 0;
+    width: 100%;
+  }
+}
+
+#profile-effect img {
+  animation: effectMove 20s infinite alternate ease-in-out;
+}
+
+@keyframes effectMove {
+  from { transform: scale(1.05); }
+  to { transform: scale(1.15); }
+}
+
+.main,
+.container,
+.banner,
+.profile,
+.about {
+  position: relative;
+  z-index: 2;
+}
+ 
+ /* 🔥 Ocultar scrollbar pero mantener scroll */
+html, body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge viejo */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+
+.socials{
+  margin-top: 15px;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.social-btn{
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  transition: 0.25s;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,0.3);
+
+  overflow: hidden;
+}
+
+.social-btn img{
+
+  width: 22px;
+  height: 22px;
+
+  object-fit: contain;
+
+  transition: 0.25s;
+}
+
+.social-btn:hover{
+
+  transform:
+    translateY(-2px) scale(1.05);
+
+  background:
+    rgba(255,255,255,0.14);
+
+  box-shadow:
+    0 0 20px rgba(255,255,255,0.15);
+}
+
+.social-btn:hover img{
+  transform: scale(1.1);
+}
+
+.social-btn::before{
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      120deg,
+      transparent,
+      rgba(255,255,255,0.15),
+      transparent
+    );
+
+  transform: translateX(-100%);
+
+  transition: 0.5s;
+}
+
+.social-btn:hover::before{
+  transform: translateX(100%);
+}
+
+.discord:hover{
+  box-shadow: 0 0 15px #5865f2;
+}
+
+.youtube:hover{
+  box-shadow: 0 0 15px #ff0000;
+}
+
+.github:hover{
+  box-shadow: 0 0 15px #ffffff;
+}
+
+.roblox:hover{
+  box-shadow: 0 0 15px rgb(25, 0, 255);
+}
+
+.instagram:hover{
+  box-shadow: 0 0 15px #ff00d4;
+}
+
+.x:hover{
+  box-shadow: 0 0 15px #000000;
+}
+
+.facebook:hover{
+  box-shadow: 0 0 15px #4400ff;
+}
+
+.bsky:hover{
+  box-shadow: 0 0 15px #00b7ff;
+}
+
+.profile-info{
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+@media (max-width: 768px){
+
+  .profile-info{
+    align-items: center;
+  }
+
+  .socials{
+    justify-content: center;
+  }
+
+}
