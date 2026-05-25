@@ -1,0 +1,37 @@
+html,
+body{
+
+  cursor:
+    url("../custom_cursor/cursor/pointer.cur") 0 0,
+    auto;
+}
+
+
+/* 🔥 BOTONES IMPORTANTES */
+.sidebar div,
+.sidebar img,
+.sidebar,
+.sidebar *{
+
+  cursor:
+    url("../custom_cursor/cursor/pointer.cur") 0 0,
+    pointer !important;
+
+}
+
+.controls button,
+
+.progress-container,
+
+.perf-btn,
+
+.option,
+
+.social-btn,
+
+#volume{
+
+  cursor:
+    url("../custom_cursor/cursor/link.cur") 0 0,
+    pointer;
+}
