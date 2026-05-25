@@ -551,6 +551,18 @@ body::-webkit-scrollbar {
   box-shadow: 0 0 15px #00b7ff;
 }
 
+.xbox:hover{
+  box-shadow: 0 0 15px #00b7ff;
+}
+
+.twitch:hover{
+  box-shadow: 0 0 15px #00b7ff;
+}
+
+.tiktok:hover{
+  box-shadow: 0 0 15px #00b7ff;
+}
+
 .profile-info{
   display: flex;
   flex-direction: column;
