@@ -2,52 +2,35 @@ async function checkVPN() {
 
   try {
 
-    const res = await fetch(
-      "https://vpnapi.io/api/82b8ecb5b1e847d58531c29c7d495079"
-    );
-
+    const res = await fetch("https://vpnapi.io/api/82b8ecb5b1e847d58531c29c7d495079");
     const data = await res.json();
 
+    console.log(data);
+
+    const security = data.security;
+
     const isVPN =
-      data.security.vpn ||
-      data.security.proxy ||
-      data.security.tor ||
-      data.security.relay;
+      security.vpn ||
+      security.proxy ||
+      security.tor ||
+      security.relay;
 
-    if(isVPN){
+    if (isVPN) {
 
-      blockAccess();
+      document.body.innerHTML = `
+        <div class="vpn-overlay">
+          <div class="vpn-box">
+            <h1>VPN Detectada</h1>
+            <p>Desactiva tu VPN o Proxy para entrar.</p>
+          </div>
+        </div>
+      `;
 
     }
 
-  } catch(err){
-
-    console.log("VPN CHECK ERROR", err);
-
+  } catch(err) {
+    console.error("Error VPN:", err);
   }
-
-}
-
-
-function blockAccess(){
-
-  document.body.innerHTML = `
-
-    <div id="vpn-block">
-
-      <div class="vpn-box">
-
-        <h1>Acceso bloqueado</h1>
-
-        <p>
-          Desactiva tu VPN o Proxy para entrar.
-        </p>
-
-      </div>
-
-    </div>
-
-  `;
 
 }
 
