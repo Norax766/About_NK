@@ -1,40 +1,17 @@
-.vpn-overlay{
+.vpn-block{
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(20px);
 
   display:flex;
+  flex-direction:column;
   justify-content:center;
   align-items:center;
 
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(20px);
+
+  color:white;
   z-index:99999;
-}
 
-.vpn-box{
-  width:350px;
-  padding:30px;
-
-  border-radius:20px;
-
-  background: rgba(255,255,255,0.08);
-
-  border:1px solid rgba(255,255,255,0.15);
-
-  backdrop-filter: blur(25px);
-
-  text-align:center;
-
-  animation: pop 0.4s ease;
-}
-
-@keyframes pop{
-  from{
-    transform:scale(0.8);
-    opacity:0;
-  }
-  to{
-    transform:scale(1);
-    opacity:1;
-  }
+  font-family: Arial;
 }
