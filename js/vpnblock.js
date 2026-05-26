@@ -3,7 +3,7 @@ async function checkVPN() {
   try {
 
     const res = await fetch(
-      "https://vpnapi.io/api/YOUR_API_KEY?key=YOUR_API_KEY"
+      "https://vpnapi.io/api/82b8ecb5b1e847d58531c29c7d495079"
     );
 
     const data = await res.json();
