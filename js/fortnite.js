@@ -1,93 +1,287 @@
-const desktop = document.getElementById("desktop");
-const eac = document.getElementById("eac");
-const fortnite = document.getElementById("fortnite");
+const desktopScreen = document.getElementById("desktop-screen");
+const eacScreen = document.getElementById("eac-screen");
+const blackScreen1 = document.getElementById("black-screen-1");
+const connectingScreen = document.getElementById("connecting-screen");
+const blackScreen2 = document.getElementById("black-screen-2");
+const loginScreen = document.getElementById("login-screen");
+const startScreen = document.getElementById("start-screen");
+const launchScreen = document.getElementById("launch-screen");
 
-const icon = document.getElementById("fortnite-icon");
-const eacText = document.getElementById("eac-text");
+const fortniteShortcut =
+document.getElementById("fortnite-shortcut");
 
-const bar = document.getElementById("bar");
-const loginBar = document.getElementById("login-bar");
+const eacStatus =
+document.getElementById("eac-status");
 
-const loginPanel = document.getElementById("login-panel");
-const startBtn = document.getElementById("start-btn");
+const usernameDisplay =
+document.getElementById("username-display");
 
-const music = document.getElementById("music");
+const connectingProgress =
+document.getElementById("connecting-progress");
 
-let username = localStorage.getItem("username");
+const loginProgress =
+document.getElementById("login-progress");
 
-if(!username){
-  username = prompt("Nombre de usuario:");
-  localStorage.setItem("username", username);
-}
+const startButton =
+document.getElementById("start-button");
 
-document.getElementById(
-  "user-info"
-).innerHTML =
-"Iniciando sesión como:<br>" + username;
+const fortniteMusic =
+document.getElementById("fortnite-music");
 
-icon.addEventListener("dblclick", startLauncher);
+/* ====================== */
+/* HORA WINDOWS */
+/* ====================== */
 
-function startLauncher(){
+const clockTime =
+document.getElementById("clock-time");
 
-  music.play().catch(()=>{});
+const clockDate =
+document.getElementById("clock-date");
 
-  desktop.classList.add("hidden");
-  eac.classList.remove("hidden");
+function updateClock(){
 
-  setTimeout(()=>{
-    eacText.textContent =
-      "Esperando al servidor...";
-  },3000);
+    const now = new Date();
 
-  setTimeout(()=>{
-    eac.classList.add("hidden");
-    fortnite.classList.remove("hidden");
-
-    loadBar(bar,3000,()=>{
-      loginPanel.classList.remove("hidden");
-
-      loadBar(loginBar,4000,()=>{
-        startBtn.classList.remove("hidden");
-      });
+    clockTime.textContent =
+    now.toLocaleTimeString("es-MX",{
+        hour:"2-digit",
+        minute:"2-digit"
     });
 
-  },6000);
+    clockDate.textContent =
+    now.toLocaleDateString("es-MX");
 }
 
-function loadBar(element,time,callback){
+updateClock();
 
-  let width=0;
+setInterval(updateClock,1000);
 
-  const interval=setInterval(()=>{
+/* ====================== */
+/* USUARIO */
+/* ====================== */
 
-    width++;
+let username =
+localStorage.getItem("fortnite_user");
 
-    element.style.width=width+"%";
+if(!username){
 
-    if(width>=100){
-      clearInterval(interval);
+    username =
+    prompt("Ingresa tu nombre de usuario:");
 
-      if(callback) callback();
+    if(!username){
+        username = "Jugador";
+    }
+
+    localStorage.setItem(
+        "fortnite_user",
+        username
+    );
+}
+
+usernameDisplay.textContent =
+username;
+
+/* ====================== */
+/* UTILIDAD */
+/* ====================== */
+
+function hideAll(){
+
+    desktopScreen.classList.add("hidden");
+    eacScreen.classList.add("hidden");
+    blackScreen1.classList.add("hidden");
+    connectingScreen.classList.add("hidden");
+    blackScreen2.classList.add("hidden");
+    loginScreen.classList.add("hidden");
+    startScreen.classList.add("hidden");
+    launchScreen.classList.add("hidden");
+}
+
+/* ====================== */
+/* BARRAS */
+/* ====================== */
+
+function animateProgress(
+    element,
+    duration,
+    callback
+){
+
+    let progress = 0;
+
+    const interval =
+    setInterval(()=>{
+
+        progress++;
+
+        element.style.width =
+        progress + "%";
+
+        if(progress >= 100){
+
+            clearInterval(interval);
+
+            if(callback){
+                callback();
+            }
+        }
+
+    }, duration / 100);
+
+}
+
+/* ====================== */
+/* FULLSCREEN */
+/* ====================== */
+
+function enterFullscreen(){
+
+    if(document.documentElement.requestFullscreen){
+
+        document.documentElement
+        .requestFullscreen()
+        .catch(()=>{});
 
     }
 
-  },time/100);
 }
 
-startBtn.addEventListener("click",()=>{
+/* ====================== */
+/* SECUENCIA */
+/* ====================== */
 
-  startBtn.textContent =
-    "Iniciando Fortnite...";
+function startFortnite(){
 
-  const ua =
-    navigator.userAgent.toLowerCase();
+    enterFullscreen();
 
-  if(ua.includes("android")){
-    window.location.href =
-      "https://www.fortnite.com/mobile";
-  }else{
-    window.location.href =
-      "https://www.fortnite.com/";
-  }
+    hideAll();
 
-});
+    eacScreen.classList.remove("hidden");
+
+    setTimeout(()=>{
+
+        eacStatus.textContent =
+        "Verificando archivos...";
+
+    },2000);
+
+    setTimeout(()=>{
+
+        eacStatus.textContent =
+        "Esperando al servidor...";
+
+    },4000);
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        blackScreen1.classList.remove(
+            "hidden"
+        );
+
+    },6000);
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        connectingScreen.classList.remove(
+            "hidden"
+        );
+
+        fortniteMusic.play()
+        .catch(()=>{});
+
+        animateProgress(
+            connectingProgress,
+            5000,
+            ()=>{}
+        );
+
+    },9000);
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        blackScreen2.classList.remove(
+            "hidden"
+        );
+
+    },14000);
+
+    setTimeout(()=>{
+
+        hideAll();
+
+        loginScreen.classList.remove(
+            "hidden"
+        );
+
+        animateProgress(
+            loginProgress,
+            5000,
+            ()=>{
+
+                hideAll();
+
+                startScreen.classList.remove(
+                    "hidden"
+                );
+
+            }
+        );
+
+    },15000);
+
+}
+
+/* ====================== */
+/* ABRIR */
+/* ====================== */
+
+fortniteShortcut.addEventListener(
+    "click",
+    startFortnite
+);
+
+/* ====================== */
+/* START */
+/* ====================== */
+
+startButton.addEventListener(
+    "click",
+    ()=>{
+
+        hideAll();
+
+        launchScreen.classList.remove(
+            "hidden"
+        );
+
+        const ua =
+        navigator.userAgent.toLowerCase();
+
+        setTimeout(()=>{
+
+            if(ua.includes("android")){
+
+                window.open(
+                    "https://www.fortnite.com/mobile",
+                    "_blank"
+                );
+
+            }else{
+
+                window.open(
+                    "https://www.fortnite.com/",
+                    "_blank"
+                );
+
+            }
+
+        },2500);
+
+    }
+);
