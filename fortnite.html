@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fortnite Launcher Experience</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Escritorio -->
+  <div id="desktop" class="screen active">
+    <img src="fortnite-icon.jpeg" id="fortnite-icon" alt="Fortnite">
+    <span>Fortnite</span>
+  </div>
+
+  <!-- Easy Anti-Cheat -->
+  <div id="eac" class="screen hidden">
+    <img src="eac-logo.png" class="eac-logo">
+    <h2 id="eac-text">Inicializando juego...</h2>
+  </div>
+
+  <!-- Pantalla Fortnite -->
+  <div id="fortnite" class="screen hidden">
+    <img src="fortnite-screen.jpg" class="bg">
+    <div id="status">Conectando...</div>
+    <div class="progress">
+      <div id="bar"></div>
+    </div>
+
+    <div id="login-panel" class="hidden">
+      <div id="user-info"></div>
+
+      <div class="bottom-center">
+        <div id="login-text">Iniciando sesión...</div>
+        <div class="progress">
+          <div id="login-bar"></div>
+        </div>
+      </div>
+
+      <div class="logos">
+        <img src="u-icon.png">
+        <img src="eg-icon.png">
+      </div>
+    </div>
+
+    <button id="start-btn" class="hidden">
+      OPRIME AQUÍ PARA EMPEZAR
+    </button>
+  </div>
+
+  <audio id="music" src="FS2C7-Overw-Loud.mp3"></audio>
+
+  <script src="script.js"></script>
+</body>
+  </html>
