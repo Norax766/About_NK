@@ -1,36 +1,48 @@
-const desktopScreen = document.getElementById("desktop-screen");
-const eacScreen = document.getElementById("eac-screen");
-const blackScreen1 = document.getElementById("black-screen-1");
-const connectingScreen = document.getElementById("connecting-screen");
-const blackScreen2 = document.getElementById("black-screen-2");
-const loginScreen = document.getElementById("login-screen");
-const startScreen = document.getElementById("start-screen");
-const launchScreen = document.getElementById("launch-screen");
+const desktop =
+document.getElementById("desktop-screen");
 
-const fortniteShortcut =
+const eac =
+document.getElementById("eac-screen");
+
+const black1 =
+document.getElementById("black-screen-1");
+
+const connecting =
+document.getElementById("connecting-screen");
+
+const black2 =
+document.getElementById("black-screen-2");
+
+const login =
+document.getElementById("login-screen");
+
+const start =
+document.getElementById("start-screen");
+
+const launch =
+document.getElementById("launch-screen");
+
+const shortcut =
 document.getElementById("fortnite-shortcut");
 
 const eacStatus =
 document.getElementById("eac-status");
 
-const usernameDisplay =
-document.getElementById("username-display");
+const connectingFill =
+document.getElementById("connecting-fill");
 
-const connectingProgress =
-document.getElementById("connecting-progress");
-
-const loginProgress =
-document.getElementById("login-progress");
+const loginFill =
+document.getElementById("login-fill");
 
 const startButton =
 document.getElementById("start-button");
 
-const fortniteMusic =
+const music =
 document.getElementById("fortnite-music");
 
-/* ====================== */
-/* HORA WINDOWS */
-/* ====================== */
+/* ========================= */
+/* RELOJ */
+/* ========================= */
 
 const clockTime =
 document.getElementById("clock-time");
@@ -43,65 +55,64 @@ function updateClock(){
     const now = new Date();
 
     clockTime.textContent =
-    now.toLocaleTimeString("es-MX",{
-        hour:"2-digit",
-        minute:"2-digit"
-    });
+    now.toLocaleTimeString(
+        "es-MX",
+        {
+            hour:"2-digit",
+            minute:"2-digit"
+        }
+    );
 
     clockDate.textContent =
-    now.toLocaleDateString("es-MX");
+    now.toLocaleDateString(
+        "es-MX"
+    );
 }
 
 updateClock();
 
 setInterval(updateClock,1000);
 
-/* ====================== */
-/* USUARIO */
-/* ====================== */
-
-let username =
-localStorage.getItem("fortnite_user");
-
-if(!username){
-
-    username =
-    prompt("Ingresa tu nombre de usuario:");
-
-    if(!username){
-        username = "Jugador";
-    }
-
-    localStorage.setItem(
-        "fortnite_user",
-        username
-    );
-}
-
-usernameDisplay.textContent =
-username;
-
-/* ====================== */
+/* ========================= */
 /* UTILIDAD */
-/* ====================== */
+/* ========================= */
 
 function hideAll(){
 
-    desktopScreen.classList.add("hidden");
-    eacScreen.classList.add("hidden");
-    blackScreen1.classList.add("hidden");
-    connectingScreen.classList.add("hidden");
-    blackScreen2.classList.add("hidden");
-    loginScreen.classList.add("hidden");
-    startScreen.classList.add("hidden");
-    launchScreen.classList.add("hidden");
+    desktop.classList.add("hidden");
+    eac.classList.add("hidden");
+    black1.classList.add("hidden");
+    connecting.classList.add("hidden");
+    black2.classList.add("hidden");
+    login.classList.add("hidden");
+    start.classList.add("hidden");
+    launch.classList.add("hidden");
 }
 
-/* ====================== */
-/* BARRAS */
-/* ====================== */
+function showScreen(screen){
 
-function animateProgress(
+    hideAll();
+
+    screen.classList.remove("hidden");
+}
+
+function fullscreen(){
+
+    if(
+        document.documentElement
+        .requestFullscreen
+    ){
+        document.documentElement
+        .requestFullscreen()
+        .catch(()=>{});
+    }
+}
+
+/* ========================= */
+/* BARRA */
+/* ========================= */
+
+function animateBar(
     element,
     duration,
     callback
@@ -109,7 +120,9 @@ function animateProgress(
 
     let progress = 0;
 
-    const interval =
+    element.style.width = "0%";
+
+    const timer =
     setInterval(()=>{
 
         progress++;
@@ -119,82 +132,53 @@ function animateProgress(
 
         if(progress >= 100){
 
-            clearInterval(interval);
+            clearInterval(timer);
 
             if(callback){
                 callback();
             }
+
         }
 
-    }, duration / 100);
+    },duration / 100);
 
 }
 
-/* ====================== */
-/* FULLSCREEN */
-/* ====================== */
-
-function enterFullscreen(){
-
-    if(document.documentElement.requestFullscreen){
-
-        document.documentElement
-        .requestFullscreen()
-        .catch(()=>{});
-
-    }
-
-}
-
-/* ====================== */
+/* ========================= */
 /* SECUENCIA */
-/* ====================== */
+/* ========================= */
 
 function startFortnite(){
 
-    enterFullscreen();
+    fullscreen();
 
-    hideAll();
+    showScreen(eac);
 
-    eacScreen.classList.remove("hidden");
-
-    setTimeout(()=>{
-
-        eacStatus.textContent =
-        "Verificando archivos...";
-
-    },2000);
+    eacStatus.textContent =
+    "Inicializando juego...";
 
     setTimeout(()=>{
 
         eacStatus.textContent =
         "Esperando al servidor...";
 
-    },4000);
+    },3000);
 
     setTimeout(()=>{
 
-        hideAll();
-
-        blackScreen1.classList.remove(
-            "hidden"
-        );
+        showScreen(black1);
 
     },6000);
 
     setTimeout(()=>{
 
-        hideAll();
+        showScreen(connecting);
 
-        connectingScreen.classList.remove(
-            "hidden"
-        );
-
-        fortniteMusic.play()
+        music.play()
         .catch(()=>{});
 
-        animateProgress(
-            connectingProgress,
+        animateBar(
+            connectingFill,
             5000,
             ()=>{}
         );
@@ -203,32 +187,20 @@ function startFortnite(){
 
     setTimeout(()=>{
 
-        hideAll();
-
-        blackScreen2.classList.remove(
-            "hidden"
-        );
+        showScreen(black2);
 
     },14000);
 
     setTimeout(()=>{
 
-        hideAll();
+        showScreen(login);
 
-        loginScreen.classList.remove(
-            "hidden"
-        );
-
-        animateProgress(
-            loginProgress,
+        animateBar(
+            loginFill,
             5000,
             ()=>{
 
-                hideAll();
-
-                startScreen.classList.remove(
-                    "hidden"
-                );
+                showScreen(start);
 
             }
         );
@@ -237,35 +209,52 @@ function startFortnite(){
 
 }
 
-/* ====================== */
-/* ABRIR */
-/* ====================== */
+/* ========================= */
+/* MOVIL */
+/* ========================= */
 
-fortniteShortcut.addEventListener(
-    "click",
-    startFortnite
-);
+if(
+/android|iphone|ipad/i
+.test(
+navigator.userAgent
+)
+){
 
-/* ====================== */
-/* START */
-/* ====================== */
+    shortcut.addEventListener(
+        "click",
+        startFortnite
+    );
+
+}else{
+
+    shortcut.addEventListener(
+        "dblclick",
+        startFortnite
+    );
+
+}
+
+/* ========================= */
+/* BOTON START */
+/* ========================= */
 
 startButton.addEventListener(
     "click",
     ()=>{
 
-        hideAll();
-
-        launchScreen.classList.remove(
-            "hidden"
-        );
-
-        const ua =
-        navigator.userAgent.toLowerCase();
+        showScreen(launch);
 
         setTimeout(()=>{
 
-            if(ua.includes("android")){
+            const ua =
+            navigator.userAgent
+            .toLowerCase();
+
+            if(
+                ua.includes(
+                    "android"
+                )
+            ){
 
                 window.open(
                     "https://www.fortnite.com/mobile",
