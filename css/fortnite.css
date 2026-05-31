@@ -1,0 +1,102 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  overflow:hidden;
+  font-family:Segoe UI,sans-serif;
+  background:black;
+  color:white;
+}
+
+.screen{
+  position:absolute;
+  width:100%;
+  height:100%;
+}
+
+.hidden{
+  display:none;
+}
+
+.active{
+  display:block;
+}
+
+#desktop{
+  background:url("win11-desk.jpg") center/cover;
+}
+
+#fortnite-icon{
+  width:90px;
+  margin:30px;
+  cursor:pointer;
+}
+
+#eac{
+  background:#111;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.eac-logo{
+  width:150px;
+  animation:spin 2s linear infinite;
+}
+
+@keyframes spin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
+#fortnite{
+  background:black;
+}
+
+.bg{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.progress{
+  width:60%;
+  height:12px;
+  background:#333;
+  margin:auto;
+}
+
+#bar,#login-bar{
+  width:0%;
+  height:100%;
+  background:white;
+}
+
+#status{
+  position:absolute;
+  top:70%;
+  width:100%;
+  text-align:center;
+  font-size:2rem;
+}
+
+#start-btn{
+  position:absolute;
+  bottom:100px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:18px 40px;
+  font-size:1.3rem;
+  cursor:pointer;
+  animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+  0%{transform:translateX(-50%) scale(1);}
+  50%{transform:translateX(-50%) scale(1.05);}
+  100%{transform:translateX(-50%) scale(1);}
+}
