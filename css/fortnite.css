@@ -1,0 +1,348 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:"Segoe UI",sans-serif;
+}
+
+#desktop{
+    width:100%;
+    height:100vh;
+
+    background-image:url("../images/win11_desk.jpg");
+    background-size:cover;
+    background-position:center;
+
+    position:relative;
+}
+
+#fortnite-icon{
+    width:90px;
+    padding:20px;
+    text-align:center;
+    cursor:pointer;
+    color:white;
+}
+
+#fortnite-icon img{
+    width:64px;
+    height:64px;
+    object-fit:contain;
+}
+
+#fortnite-icon span{
+    display:block;
+    margin-top:5px;
+    text-shadow:0 0 5px black;
+}
+
+#taskbar{
+    position:fixed;
+    left:0;
+    bottom:0;
+
+    width:100%;
+    height:58px;
+
+    background:rgba(30,30,30,.85);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+}
+
+#taskbar-center{
+    display:flex;
+    gap:10px;
+}
+
+.task-icon{
+    width:40px;
+    height:40px;
+
+    border-radius:10px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(255,255,255,.1);
+
+    color:white;
+}
+
+#clock{
+    position:absolute;
+    right:15px;
+
+    color:white;
+
+    text-align:right;
+    font-size:12px;
+}
+
+.hidden{
+    display:none;
+}
+
+#launcher-screen{
+
+    position:fixed;
+    inset:0;
+
+    z-index:99999;
+
+    background:black;
+}
+
+#launcher-bg{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+#launcher-status{
+
+    position:absolute;
+
+    left:25px;
+    bottom:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    color:white;
+
+    font-size:22px;
+
+    text-shadow:0 0 10px black;
+}
+
+#launcher-eac{
+
+    width:40px;
+    height:40px;
+}
+
+#black-screen{
+
+    position:fixed;
+    inset:0;
+
+    background:black;
+
+    z-index:100000;
+}
+
+#connecting-screen{
+
+    position:fixed;
+    inset:0;
+
+    z-index:100001;
+}
+
+#connecting-bg{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+#connecting-container{
+
+    position:absolute;
+
+    left:25px;
+    bottom:25px;
+
+    width:calc(100vw - 50px);
+
+    color:white;
+}
+
+#connecting-container h1{
+
+    margin-bottom:10px;
+
+    font-size:22px;
+
+    text-shadow:0 0 10px black;
+}
+
+#progress-bar{
+
+    width:calc(100vw - 50px);
+
+    max-width:none;
+
+    height:12px;
+
+    background:rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+#progress-fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:white;
+}
+
+#login-screen{
+
+    position:fixed;
+    inset:0;
+
+    z-index:100002;
+}
+
+#login-bg{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+#login-user{
+
+    position:absolute;
+
+    left:25px;
+    bottom:25px;
+
+    color:white;
+
+    text-shadow:0 0 10px black;
+}
+
+#login-user h2{
+    margin-top:5px;
+}
+
+#login-center{
+
+    position:absolute;
+
+    left:50%;
+    bottom:25px;
+
+    transform:translateX(-50%);
+
+    width:60%;
+
+    color:white;
+}
+
+#login-center h2{
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+    text-shadow:0 0 10px black;
+}
+
+#login-progress-bar{
+
+    width:100%;
+
+    height:12px;
+
+    background:rgba(255,255,255,.25);
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+#login-progress-fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:white;
+}
+
+#login-logos{
+
+    position:absolute;
+
+    right:25px;
+    bottom:25px;
+
+    display:flex;
+
+    gap:15px;
+}
+
+#login-logos img{
+
+    width:60px;
+    height:auto;
+}
+
+#start-button{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    padding:18px 40px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    animation:pulse 1.2s infinite;
+
+    z-index:9999;
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.05);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
