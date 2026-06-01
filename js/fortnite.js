@@ -92,3 +92,15 @@ setTimeout(()=>{
     );
 
 },6000);
+
+const blackScreen =
+document.getElementById("black-screen");
+
+const connectingScreen =
+document.getElementById("connecting-screen");
+
+const progressFill =
+document.getElementById("progress-fill");
+
+const music =
+document.getElementById("fortnite-music");
