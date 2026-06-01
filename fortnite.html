@@ -1,46 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Fortnite Launcher</title>
-
-    <link rel="stylesheet"
-          href="css/fortnite.css">
-
+    <link rel="stylesheet" href="css/fortnite.css">
 </head>
-
 <body>
 
-    <!-- ==================== -->
-    <!-- WINDOWS 11 -->
-    <!-- ==================== -->
+    <div id="desktop">
 
-    <section id="desktop-screen"
-             class="screen">
+        <div id="fortnite-icon">
 
-        <div class="desktop-icons">
+            <img src="images/fortnite_icon.jpeg"
+                 alt="Fortnite">
 
-            <div id="fortnite-shortcut"
-                 class="desktop-icon">
-
-                <img src="images/fortnite_icon.jpeg"
-                     alt="Fortnite">
-
-                <span>Fortnite</span>
-
-            </div>
+            <span>Fortnite</span>
 
         </div>
 
-        <div class="taskbar">
+        <div id="taskbar">
 
-            <div class="taskbar-center">
+            <div id="taskbar-center">
 
                 <div class="task-icon">⊞</div>
                 <div class="task-icon">🔍</div>
@@ -49,13 +31,13 @@
 
             </div>
 
-            <div class="taskbar-clock">
+            <div id="clock">
 
-                <div id="clock-time">
+                <div id="time">
                     00:00
                 </div>
 
-                <div id="clock-date">
+                <div id="date">
                     00/00/0000
                 </div>
 
@@ -63,175 +45,9 @@
 
         </div>
 
-    </section>
-
-    <!-- ==================== -->
-    <!-- EASY ANTI CHEAT -->
-    <!-- ==================== -->
-
-    <section id="eac-screen"
-             class="screen hidden">
-
-        <div class="eac-window">
-
-            <img src="images/eac_logo.png"
-                 class="eac-logo"
-                 alt="EAC">
-
-            <img src="images/fortnite_screen.jpg"
-                 class="eac-banner"
-                 alt="Fortnite">
-
-            <h2 id="eac-status">
-                Inicializando juego...
-            </h2>
-
-        </div>
-
-    </section>
-
-    <!-- ==================== -->
-    <!-- PANTALLA NEGRA #1 -->
-    <!-- ==================== -->
-
-    <section id="black-screen-1"
-             class="screen hidden black-screen">
-
-    </section>
-
-    <!-- ==================== -->
-    <!-- CONECTANDO -->
-    <!-- ==================== -->
-
-    <section id="connecting-screen"
-             class="screen hidden">
-
-        <img src="images/fortnite_screen.jpg"
-             class="fortnite-bg"
-             alt="Fortnite">
-
-        <div class="connecting-box">
-
-            <h1>
-                Conectando...
-            </h1>
-
-            <div class="progress-bar">
-
-                <div id="connecting-fill"
-                     class="progress-fill">
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ==================== -->
-    <!-- PANTALLA NEGRA #2 -->
-    <!-- ==================== -->
-
-    <section id="black-screen-2"
-             class="screen hidden black-screen">
-
-    </section>
-
-    <!-- ==================== -->
-    <!-- LOGIN -->
-    <!-- ==================== -->
-
-    <section id="login-screen"
-             class="screen hidden">
-
-        <img src="images/fortnite_screen.jpg"
-             class="fortnite-bg"
-             alt="Fortnite">
-
-        <div class="login-left">
-
-            <span>
-                Iniciando sesión como:
-            </span>
-
-            <h2>
-                Invitado
-            </h2>
-
-        </div>
-
-        <div class="login-center">
-
-            <h2>
-                Iniciando sesión...
-            </h2>
-
-            <div class="progress-bar">
-
-                <div id="login-fill"
-                     class="progress-fill">
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="login-right">
-
-            <img src="images/u-icon.png"
-                 alt="Unreal">
-
-            <img src="images/eg-icon.png"
-                 alt="Epic">
-
-        </div>
-
-    </section>
-
-    <!-- ==================== -->
-    <!-- START -->
-    <!-- ==================== -->
-
-    <section id="start-screen"
-             class="screen hidden">
-
-        <img src="images/fortnite_screen.jpg"
-             class="fortnite-bg"
-             alt="Fortnite">
-
-        <button id="start-button">
-
-            OPRIME AQUÍ PARA EMPEZAR
-
-        </button>
-
-    </section>
-
-    <!-- ==================== -->
-    <!-- LAUNCH -->
-    <!-- ==================== -->
-
-    <section id="launch-screen"
-             class="screen hidden black-screen">
-
-        <h1 id="launch-text">
-
-            Iniciando Fortnite...
-
-        </h1>
-
-    </section>
-
-    <!-- ==================== -->
-    <!-- AUDIO -->
-    <!-- ==================== -->
-
-    <audio id="fortnite-music"
-           src="audio/FS2C7_Overw_Collab.mp3">
-    </audio>
+    </div>
 
     <script src="js/fortnite.js"></script>
 
 </body>
-
 </html>
