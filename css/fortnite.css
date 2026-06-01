@@ -175,3 +175,64 @@ body{
 
     z-index:999999;
 }
+
+#connecting-screen{
+
+    position:fixed;
+    inset:0;
+
+    z-index:999999;
+}
+
+#connecting-bg{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+#connecting-container{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:80%;
+    max-width:700px;
+
+    text-align:center;
+
+    color:white;
+}
+
+#connecting-container h1{
+
+    margin-bottom:20px;
+
+    text-shadow:0 0 10px black;
+}
+
+#progress-bar{
+
+    width:100%;
+    height:18px;
+
+    background:rgba(255,255,255,.2);
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+#progress-fill{
+
+    width:0%;
+
+    height:100%;
+
+    background:white;
+}
