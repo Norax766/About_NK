@@ -79,9 +79,7 @@ if(
         startLauncher
     );
 
-}
-
-setTimeout(()=>{
+    setTimeout(()=>{
 
     launcherScreen.classList.add("hidden");
 
@@ -102,6 +100,8 @@ setTimeout(()=>{
     startProgress();
 
 },9000);
+
+}
 
 const blackScreen =
 document.getElementById("black-screen");
