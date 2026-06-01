@@ -26,3 +26,36 @@ function updateClock(){
 updateClock();
 
 setInterval(updateClock,1000);
+
+const fortniteIcon =
+document.getElementById("fortnite-icon");
+
+const eacWindow =
+document.getElementById("eac-window");
+
+function openEAC(){
+
+    eacWindow.classList.remove(
+        "hidden"
+    );
+
+}
+
+if(
+/android|iphone|ipad/i
+.test(navigator.userAgent)
+){
+
+    fortniteIcon.addEventListener(
+        "click",
+        openEAC
+    );
+
+}else{
+
+    fortniteIcon.addEventListener(
+        "dblclick",
+        openEAC
+    );
+
+}
