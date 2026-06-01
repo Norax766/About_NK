@@ -101,7 +101,6 @@ function startLauncher(){
 
     music.play().catch(error=>{
         console.log(error);
-    });
 
     if(document.documentElement.requestFullscreen){
 
@@ -109,7 +108,7 @@ function startLauncher(){
        .requestFullscreen()
        .catch(()=>{});
 
-    }
+    });
 
 startProgress();
 
