@@ -58,12 +58,23 @@ body{
 /* TASKBAR */
 
 #taskbar{
+
     position:absolute;
+
     bottom:0;
+
     width:100%;
     height:56px;
-    background:red;
-    z-index:9999;
+
+    background:rgba(20,20,20,.45);
+
+    backdrop-filter:blur(20px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 }
 
 #taskbar-center{
