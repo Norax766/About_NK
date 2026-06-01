@@ -37,15 +37,7 @@ const launcherText =
 document.getElementById("launcher-text");
 
 function startLauncher(){
-
-    if(document.documentElement.requestFullscreen){
-
-        document.documentElement
-        .requestFullscreen()
-        .catch(()=>{});
-
-    }
-
+    
     launcherScreen.classList.remove(
         "hidden"
     );
