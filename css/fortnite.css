@@ -10,69 +10,65 @@ body{
     height:100%;
     overflow:hidden;
     font-family:"Segoe UI",sans-serif;
-    color:white;
-    background:black;
 }
 
-.screen{
-    position:fixed;
-    inset:0;
+#desktop{
+
     width:100%;
-    height:100%;
-}
+    height:100vh;
 
-.hidden{
-    display:none;
-}
-
-/* ====================== */
-/* WINDOWS 11 */
-/* ====================== */
-
-#desktop-screen{
     background:url("../images/win11_desk.jpg")
     center center/cover no-repeat;
+
+    position:relative;
 }
 
-.desktop-icons{
-    padding:20px;
-}
+/* ICONO */
 
-.desktop-icon{
+#fortnite-icon{
+
     width:90px;
+
+    padding:20px;
+
     text-align:center;
+
     cursor:pointer;
-    user-select:none;
+
+    color:white;
 }
 
-.desktop-icon img{
+#fortnite-icon img{
+
     width:64px;
     height:64px;
+
     object-fit:contain;
 }
 
-.desktop-icon span{
+#fortnite-icon span{
+
     display:block;
-    margin-top:6px;
+
+    margin-top:5px;
+
     text-shadow:0 0 5px black;
 }
 
-/* ====================== */
 /* TASKBAR */
-/* ====================== */
 
-.taskbar{
+#taskbar{
 
     position:absolute;
 
     bottom:0;
 
     width:100%;
-    height:58px;
+    height:56px;
 
-    backdrop-filter:blur(18px);
+    background:rgba(20,20,20,.45);
 
-    background:rgba(25,25,25,.45);
+    backdrop-filter:blur(20px);
 
     display:flex;
 
@@ -81,11 +77,11 @@ body{
     align-items:center;
 }
 
-.taskbar-center{
+#taskbar-center{
 
     display:flex;
 
-    gap:12px;
+    gap:10px;
 }
 
 .task-icon{
@@ -93,18 +89,19 @@ body{
     width:40px;
     height:40px;
 
-    border-radius:10px;
-
     display:flex;
+
     justify-content:center;
     align-items:center;
 
+    border-radius:10px;
+
     background:rgba(255,255,255,.08);
 
-    cursor:pointer;
+    color:white;
 }
 
-.taskbar-clock{
+#clock{
 
     position:absolute;
 
@@ -112,264 +109,7 @@ body{
 
     text-align:right;
 
+    color:white;
+
     font-size:12px;
-}
-
-/* ====================== */
-/* EAC */
-/* ====================== */
-
-#eac-screen{
-
-    background:#111;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-}
-
-.eac-window{
-
-    width:min(800px,90%);
-
-    background:#1a1a1a;
-
-    border-radius:12px;
-
-    overflow:hidden;
-}
-
-.eac-logo{
-
-    width:120px;
-
-    display:block;
-
-    margin:20px auto;
-
-    animation:pulse 2s infinite;
-}
-
-.eac-banner{
-
-    width:100%;
-
-    height:240px;
-
-    object-fit:cover;
-}
-
-#eac-status{
-
-    text-align:center;
-
-    padding:20px;
-}
-
-@keyframes pulse{
-
-    0%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.05);
-    }
-
-    100%{
-        transform:scale(1);
-    }
-}
-
-/* ====================== */
-/* BLACK */
-/* ====================== */
-
-.black-screen{
-    background:black;
-}
-
-/* ====================== */
-/* FORTNITE */
-/* ====================== */
-
-.fortnite-bg{
-
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    z-index:-1;
-}
-
-/* ====================== */
-/* CONNECTING */
-/* ====================== */
-
-.connecting-box{
-
-    position:absolute;
-
-    top:50%;
-    left:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:80%;
-
-    max-width:800px;
-
-    text-align:center;
-}
-
-.connecting-box h1{
-
-    margin-bottom:20px;
-}
-
-/* ====================== */
-/* BARS */
-/* ====================== */
-
-.progress-bar{
-
-    width:100%;
-
-    height:18px;
-
-    background:rgba(255,255,255,.2);
-
-    border-radius:20px;
-
-    overflow:hidden;
-}
-
-.progress-fill{
-
-    width:0%;
-
-    height:100%;
-
-    background:white;
-}
-
-/* ====================== */
-/* LOGIN */
-/* ====================== */
-
-.login-left{
-
-    position:absolute;
-
-    left:30px;
-
-    bottom:35px;
-}
-
-.login-center{
-
-    position:absolute;
-
-    left:50%;
-
-    bottom:35px;
-
-    transform:translateX(-50%);
-
-    width:60%;
-}
-
-.login-center h2{
-
-    text-align:center;
-
-    margin-bottom:10px;
-}
-
-.login-right{
-
-    position:absolute;
-
-    right:25px;
-
-    bottom:25px;
-
-    display:flex;
-
-    gap:15px;
-}
-
-.login-right img{
-
-    width:60px;
-}
-
-/* ====================== */
-/* START */
-/* ====================== */
-
-#start-screen{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-}
-
-#start-button{
-
-    padding:18px 40px;
-
-    border:none;
-
-    border-radius:8px;
-
-    font-size:1.3rem;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    animation:startPulse 1.5s infinite;
-}
-
-@keyframes startPulse{
-
-    0%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.06);
-    }
-
-    100%{
-        transform:scale(1);
-    }
-}
-
-/* ====================== */
-/* LAUNCH */
-/* ====================== */
-
-#launch-screen{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-}
-
-#launch-text{
-
-    font-size:32px;
 }
