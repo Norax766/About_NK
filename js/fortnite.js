@@ -97,14 +97,6 @@ function startLauncher(){
     "hidden"
     );
 
-  if(document.documentElement.requestFullscreen){
-
-     document.documentElement
-     .requestFullscreen()
-     .catch(()=>{});
-
-    }
-
 music.volume = 1;
 
 music.play().catch(error=>{
