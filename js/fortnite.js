@@ -30,14 +30,35 @@ setInterval(updateClock,1000);
 const fortniteIcon =
 document.getElementById("fortnite-icon");
 
-const eacWindow =
-document.getElementById("eac-window");
+const launcherScreen =
+document.getElementById("launcher-screen");
 
-function openEAC(){
+const launcherText =
+document.getElementById("launcher-text");
 
-    eacWindow.classList.remove(
+function startLauncher(){
+
+    if(document.documentElement.requestFullscreen){
+
+        document.documentElement
+        .requestFullscreen()
+        .catch(()=>{});
+
+    }
+
+    launcherScreen.classList.remove(
         "hidden"
     );
+
+    launcherText.textContent =
+    "Inicializando juego...";
+
+    setTimeout(()=>{
+
+        launcherText.textContent =
+        "Esperando al servidor...";
+
+    },3000);
 
 }
 
@@ -48,14 +69,14 @@ if(
 
     fortniteIcon.addEventListener(
         "click",
-        openEAC
+        startLauncher
     );
 
 }else{
 
     fortniteIcon.addEventListener(
         "dblclick",
-        openEAC
+        startLauncher
     );
 
 }
