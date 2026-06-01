@@ -83,15 +83,25 @@ if(
 
 setTimeout(()=>{
 
-    launcherScreen.classList.add(
-        "hidden"
-    );
+    launcherScreen.classList.add("hidden");
 
-    blackScreen.classList.remove(
-        "hidden"
-    );
+    blackScreen.classList.remove("hidden");
 
 },6000);
+
+setTimeout(()=>{
+
+    blackScreen.classList.add("hidden");
+
+    connectingScreen.classList.remove(
+        "hidden"
+    );
+
+    music.play().catch(()=>{});
+
+    startProgress();
+
+},9000);
 
 const blackScreen =
 document.getElementById("black-screen");
@@ -104,3 +114,26 @@ document.getElementById("progress-fill");
 
 const music =
 document.getElementById("fortnite-music");
+
+function startProgress(){
+
+    let progress = 0;
+
+    const timer =
+    setInterval(()=>{
+
+        progress++;
+
+        progressFill.style.width =
+        progress + "%";
+
+        if(progress >= 100){
+
+            clearInterval(timer);
+
+        }
+
+    },50);
+
+}
+
