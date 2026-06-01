@@ -80,3 +80,15 @@ if(
     );
 
 }
+
+setTimeout(()=>{
+
+    launcherScreen.classList.add(
+        "hidden"
+    );
+
+    blackScreen.classList.remove(
+        "hidden"
+    );
+
+},6000);
