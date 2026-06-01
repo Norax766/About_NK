@@ -94,7 +94,7 @@ function startLauncher(){
     );
 
     connectingScreen.classList.remove(
-    "hidden"
+        "hidden"
     );
 
     music.volume = 1;
@@ -103,7 +103,7 @@ function startLauncher(){
         console.log(error);
     });
 
-startProgress();
+    startProgress();
 
     },9000);
 
@@ -219,7 +219,7 @@ startButton.addEventListener(
 
     }
 );
-    
+
 if(
 /android|iphone|ipad/i
 .test(navigator.userAgent)
@@ -238,10 +238,3 @@ if(
     );
 
 }
-
-if(document.documentElement.requestFullscreen){
-
-       document.documentElement
-       .requestFullscreen()
-       .catch(()=>{});
-    
