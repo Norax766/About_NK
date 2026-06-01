@@ -219,12 +219,6 @@ startButton.addEventListener(
 
     }
 );
-
-if(document.documentElement.requestFullscreen){
-
-       document.documentElement
-       .requestFullscreen()
-       .catch(()=>{});
     
 if(
 /android|iphone|ipad/i
@@ -244,3 +238,10 @@ if(
     );
 
 }
+
+if(document.documentElement.requestFullscreen){
+
+       document.documentElement
+       .requestFullscreen()
+       .catch(()=>{});
+    
