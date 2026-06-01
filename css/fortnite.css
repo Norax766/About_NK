@@ -115,38 +115,46 @@ body{
     display:none !important;
 }
 
-#eac-window{
+#launcher-screen{
 
     position:fixed;
     inset:0;
 
-    background:rgba(0,0,0,.6);
+    z-index:99999;
+
+    background:black;
+}
+
+#launcher-bg{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+#launcher-status{
+
+    position:absolute;
+
+    left:25px;
+    bottom:25px;
 
     display:flex;
-    justify-content:center;
+
     align-items:center;
 
-    z-index:10000;
-}
-
-#eac-box{
-
-    width:400px;
-
-    background:#181818;
-
-    border-radius:12px;
-
-    padding:25px;
-
-    text-align:center;
+    gap:12px;
 
     color:white;
+
+    font-size:22px;
+
+    text-shadow:0 0 10px black;
 }
 
-#eac-logo{
+#launcher-eac{
 
-    width:120px;
-
-    margin-bottom:15px;
+    width:38px;
+    height:38px;
 }
