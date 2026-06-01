@@ -50,8 +50,6 @@ document.getElementById("fortnite-music");
 
 function startLauncher(){
 
-    music.load();
-
     launcherScreen.classList.remove(
         "hidden"
     );
