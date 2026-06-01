@@ -37,38 +37,35 @@ const launcherText =
 document.getElementById("launcher-text");
 
 function startLauncher(){
-    
-    launcherScreen.classList.remove(
+
+    eacWindow.classList.remove(
         "hidden"
     );
 
-    launcherText.textContent =
+    eacText.textContent =
     "Inicializando juego...";
 
     setTimeout(()=>{
 
-        launcherText.textContent =
+        eacText.textContent =
         "Esperando al servidor...";
 
     },3000);
 
-}
+    setTimeout(()=>{
 
-if(
-/android|iphone|ipad/i
-.test(navigator.userAgent)
-){
+        eacWindow.classList.add(
+            "hidden"
+        );
 
-    fortniteIcon.addEventListener(
-        "click",
-        startLauncher
-    );
+        document.documentElement
+        .requestFullscreen()
+        .catch(()=>{});
 
-}else{
+        launcherScreen.classList.remove(
+            "hidden"
+        );
 
-    fortniteIcon.addEventListener(
-        "dblclick",
-        startLauncher
-    );
+    },6000);
 
 }
