@@ -101,13 +101,6 @@ function startLauncher(){
 
     music.play().catch(error=>{
         console.log(error);
-
-    if(document.documentElement.requestFullscreen){
-
-       document.documentElement
-       .requestFullscreen()
-       .catch(()=>{});
-
     });
 
 startProgress();
@@ -227,6 +220,12 @@ startButton.addEventListener(
     }
 );
 
+if(document.documentElement.requestFullscreen){
+
+       document.documentElement
+       .requestFullscreen()
+       .catch(()=>{});
+    
 if(
 /android|iphone|ipad/i
 .test(navigator.userAgent)
