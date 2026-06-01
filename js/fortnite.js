@@ -94,16 +94,24 @@ function startLauncher(){
     );
 
     connectingScreen.classList.remove(
-        "hidden"
+    "hidden"
     );
 
-    music.volume = 1;
+  if(document.documentElement.requestFullscreen){
 
-    music.play().catch(error=>{
-        console.log(error);
-    });
+     document.documentElement
+     .requestFullscreen()
+     .catch(()=>{});
 
-    startProgress();
+    }
+
+music.volume = 1;
+
+music.play().catch(error=>{
+    console.log(error);
+});
+
+startProgress();
 
     },9000);
 
