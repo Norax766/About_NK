@@ -36,17 +36,21 @@ document.getElementById("launcher-screen");
 const launcherText =
 document.getElementById("launcher-text");
 
+const blackScreen =
+document.getElementById("black-screen");
+
+const connectingScreen =
+document.getElementById("connecting-screen");
+
+const progressFill =
+document.getElementById("progress-fill");
+
+const music =
+document.getElementById("fortnite-music");
+
 function startLauncher(){
 
     music.load();
-    
-    if(document.documentElement.requestFullscreen){
-
-        document.documentElement
-        .requestFullscreen()
-        .catch(()=>{});
-
-    }
 
     launcherScreen.classList.remove(
         "hidden"
@@ -62,60 +66,32 @@ function startLauncher(){
 
     },3000);
 
-}
+    setTimeout(()=>{
 
-if(
-/android|iphone|ipad/i
-.test(navigator.userAgent)
-){
+        launcherScreen.classList.add("hidden");
 
-    fortniteIcon.addEventListener(
-        "click",
-        startLauncher
-    );
+        blackScreen.classList.remove("hidden");
 
-}else{
-
-    fortniteIcon.addEventListener(
-        "dblclick",
-        startLauncher
-    );
+    },6000);
 
     setTimeout(()=>{
 
-    launcherScreen.classList.add("hidden");
+        blackScreen.classList.add("hidden");
 
-    blackScreen.classList.remove("hidden");
+        connectingScreen.classList.remove("hidden");
 
-},6000);
+        music.volume = 1;
 
-setTimeout(()=>{
+        music.play().catch(err=>{
+            console.log(err);
+        });
 
-    blackScreen.classList.add("hidden");
+        startProgress();
 
-    connectingScreen.classList.remove(
-        "hidden"
-    );
-
-    music.play().catch(()=>{});
-
-    startProgress();
-
-},9000);
+    },9000);
 
 }
 
-const blackScreen =
-document.getElementById("black-screen");
-
-const connectingScreen =
-document.getElementById("connecting-screen");
-
-const progressFill =
-document.getElementById("progress-fill");
-
-const music =
-document.getElementById("fortnite-music");
 
 function startProgress(){
 
