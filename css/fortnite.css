@@ -110,3 +110,43 @@ body{
 
     font-size:12px;
 }
+
+.hidden{
+    display:none !important;
+}
+
+#eac-window{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.6);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:10000;
+}
+
+#eac-box{
+
+    width:400px;
+
+    background:#181818;
+
+    border-radius:12px;
+
+    padding:25px;
+
+    text-align:center;
+
+    color:white;
+}
+
+#eac-logo{
+
+    width:120px;
+
+    margin-bottom:15px;
+}
