@@ -38,6 +38,8 @@ document.getElementById("launcher-text");
 
 function startLauncher(){
 
+    music.load();
+    
     if(document.documentElement.requestFullscreen){
 
         document.documentElement
