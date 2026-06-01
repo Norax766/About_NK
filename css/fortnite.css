@@ -120,41 +120,47 @@ body{
     position:fixed;
     inset:0;
 
-    z-index:99999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-    background:black;
+    background:rgba(0,0,0,.15);
+
+    z-index:99999;
 }
 
 #launcher-bg{
 
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
+    display:none;
 }
 
 #launcher-status{
 
-    position:absolute;
+    background:white;
 
-    left:25px;
-    bottom:25px;
+    color:black;
+
+    padding:25px;
+
+    border-radius:8px;
+
+    width:500px;
 
     display:flex;
 
     align-items:center;
 
-    gap:12px;
+    gap:15px;
 
-    color:white;
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
 
-    font-size:22px;
+    position:static;
 
-    text-shadow:0 0 10px black;
+    text-shadow:none;
 }
 
 #launcher-eac{
 
-    width:38px;
-    height:38px;
+    width:40px;
+    height:40px;
 }
