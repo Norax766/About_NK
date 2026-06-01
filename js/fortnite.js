@@ -61,6 +61,14 @@ document.getElementById("start-button");
 
 function startLauncher(){
 
+    if(document.documentElement.requestFullscreen){
+
+        document.documentElement
+        .requestFullscreen()
+        .catch(()=>{});
+
+    }
+    
     launcherScreen.classList.remove(
         "hidden"
     );
