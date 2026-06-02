@@ -207,29 +207,39 @@ startButton.addEventListener(
     "click",
     ()=>{
 
-        startButton.textContent =
-        "Iniciando Fortnite...";
+        document.getElementById(
+            "device-modal"
+        ).classList.add(
+            "show"
+        );
 
-        const ua =
-        navigator.userAgent.toLowerCase();
+    }
+);
 
-        if(
-            ua.includes("android")
-        ){
+document.getElementById(
+    "mobile-option"
+).addEventListener(
+    "click",
+    ()=>{
 
-            window.open(
-                "https://www.fortnite.com/mobile",
-                "_blank"
-            );
+        window.open(
+            "https://www.fortnite.com/mobile",
+            "_blank"
+        );
 
-        }else{
+    }
+);
 
-            window.open(
-                "https://www.fortnite.com/download",
-                "_blank"
-            );
+document.getElementById(
+    "pc-option"
+).addEventListener(
+    "click",
+    ()=>{
 
-        }
+        window.open(
+            "https://www.fortnite.com/download",
+            "_blank"
+        );
 
     }
 );
