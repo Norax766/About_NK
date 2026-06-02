@@ -70,8 +70,18 @@ function startLauncher(){
     }
     
     launcherScreen.classList.remove(
-        "hidden"
+    "hidden"
+);
+
+    launcherScreen.classList.remove(
+    "fade-in"
     );
+
+    void launcherScreen.offsetWidth;
+
+    launcherScreen.classList.add(
+    "fade-in"
+);
 
     launcherText.textContent =
     "Inicializando juego...";
@@ -86,23 +96,19 @@ function startLauncher(){
     setTimeout(()=>{
 
         launcherScreen.classList.add(
-            "hidden"
-        );
+        "fade-out"
+          );
 
-        blackScreen.classList.remove(
-            "hidden"
-        );
-
-    },6000);
+         },6000);
 
     setTimeout(()=>{
 
-    blackScreen.classList.add(
+    launcherScreen.classList.add(
         "hidden"
     );
 
     connectingScreen.classList.remove(
-    "hidden"
+        "hidden"
     );
 
 music.volume = 1;
