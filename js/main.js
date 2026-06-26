@@ -123,7 +123,7 @@ let lyrics = [];
 
 // cargar .lrc
 async function loadLyrics(){
-  const res = await fetch("audio/SAWTONE ft. Miku/M@GICAL CURE! LOVE SHOT! (feat. Hatsune Miku).lrc");
+  const res = await fetch("EL ARCHIVO .lrc AQUI");
   const text = await res.text();
 
   const lines = text.split("\n");
