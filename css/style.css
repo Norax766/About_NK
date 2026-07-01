@@ -305,7 +305,9 @@ body::before {
 }
 
 .card p {
-  white-space: pre-line;
+    white-space: pre-wrap;
+    font-family: Consolas, "Courier New", monospace;
+    line-height: 1.25;
 }
 
 /* Overlay */
@@ -794,3 +796,31 @@ body::-webkit-scrollbar {
   }
 }
 
+#about-content{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.about-text{
+    white-space:pre-wrap;
+}
+
+.about-ascii{
+
+    font-family:
+        Consolas,
+        "Cascadia Code",
+        "Courier New",
+        monospace;
+
+    white-space:pre;
+
+    line-height:1.1;
+
+    font-size:13px;
+
+    text-align:center;
+
+    color:#ffffffdd;
+}

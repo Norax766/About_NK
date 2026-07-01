@@ -1,0 +1,13 @@
+{
+  "titulo": "Sobre mí",
+  "contenido": [
+    {
+      "tipo": "texto",
+      "valor": "Hola, ¿qué tal? Espero que bien..."
+    },
+    {
+      "tipo": "ascii",
+      "valor": "               ／＞     フ\n                | 　|　|  |\n           ／` ミ＿•ノ\n          /　　　　 |\n        /　 ヽ　　 ﾉ\n      │　　|　|　|\n／￣|　　 |　|　|\n(￣ヽ＿_ヽ_)__)\n＼二)"
+    }
+  ]
+}
