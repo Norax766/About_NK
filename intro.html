@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducción</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    #videoIntro {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #000;
+    }
+    #iniciar {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      background: rgba(0, 0, 0, .45);
+      color: white;
+      font: 600 20px Arial, sans-serif;
+      cursor: pointer;
+    }
+    #iniciar[hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <video id="videoIntro" autoplay playsinline preload="auto">
+    <source src="assets/video/loading_screen.mp4" type="video/mp4">
+    Tu navegador no puede reproducir este video.
+  </video>
+
+  <button id="iniciar" hidden>▶ Reproducir introducción</button>
+
+  <script>
+    const video = document.getElementById('videoIntro');
+    const boton = document.getElementById('iniciar');
+
+    // Al terminar el video, abre la página principal.
+    video.addEventListener('ended', () => {
+      window.location.href = 'principal.html';
+    });
+
+    // Intentar reproducir con audio automáticamente.
+    video.muted = false;
+    video.play().catch(() => {
+      // Algunos navegadores bloquean la reproducción automática con audio.
+      boton.hidden = false;
+    });
+
+    // Un clic permite iniciar el audio y solicitar pantalla completa.
+    boton.addEventListener('click', async () => {
+      boton.hidden = true;
+      try {
+        if (document.documentElement.requestFullscreen) {
+          await document.documentElement.requestFullscreen();
+        }
+      } catch (e) {
+        // Si el navegador no permite pantalla completa, el video sigue ocupando la ventana.
+      }
+      video.muted = false;
+      video.play().catch(() => {
+        boton.hidden = false;
+      });
+    });
+  </script>
+</body>
+</html>
